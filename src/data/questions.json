@@ -1,0 +1,407 @@
+{
+  "r1": {
+    "Cinema": {
+      "id": "r1_cinema",
+      "text": "Who directed the 1994 film 'The Shawshank Redemption'?",
+      "options": [
+        "Steven Spielberg",
+        "Frank Darabont",
+        "Martin Scorsese",
+        "Quentin Tarantino"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Science": {
+      "id": "r1_science",
+      "text": "What planet in our solar system is known as the Red Planet?",
+      "options": ["Venus", "Mars", "Jupiter", "Saturn"],
+      "correctAnswerIndex": 1
+    },
+    "Maths": {
+      "id": "r1_maths",
+      "text": "What is the value of pi rounded to two decimal places?",
+      "options": ["3.41", "3.17", "3.12", "3.14"],
+      "correctAnswerIndex": 3
+    },
+    "Language": {
+      "id": "r1_language",
+      "text": "What do you call a word that reads the same forwards and backwards?",
+      "options": ["Anagram", "Homonym", "Palindrome", "Acronym"],
+      "correctAnswerIndex": 2
+    },
+    "Politics": {
+      "id": "r1_politics",
+      "text": "In which city is the headquarters of the United Nations located?",
+      "options": ["Geneva", "Washington D.C.", "Brussels", "New York City"],
+      "correctAnswerIndex": 3
+    },
+    "Puzzle": {
+      "id": "r1_puzzle",
+      "text": "How many squares are on a standard chessboard?",
+      "options": ["32", "48", "64", "100"],
+      "correctAnswerIndex": 2
+    },
+    "Sports": {
+      "id": "r1_sports",
+      "text": "How many players are on a standard football (soccer) team on the field?",
+      "options": ["9", "10", "11", "12"],
+      "correctAnswerIndex": 2
+    },
+    "Mythology": {
+      "id": "r1_mythology",
+      "text": "In Greek mythology, who is the king of the gods?",
+      "options": ["Poseidon", "Hades", "Zeus", "Apollo"],
+      "correctAnswerIndex": 2
+    },
+    "History": {
+      "id": "r1_history",
+      "text": "In which century did Christopher Columbus first sail to the Americas?",
+      "options": [
+        "13th century",
+        "14th century",
+        "15th century",
+        "16th century"
+      ],
+      "correctAnswerIndex": 2
+    },
+    "Food": {
+      "id": "r1_food",
+      "text": "Which country is sushi originally from?",
+      "options": ["China", "Japan", "Thailand", "South Korea"],
+      "correctAnswerIndex": 1
+    },
+    "Geography": {
+      "id": "r1_geography",
+      "text": "What is the largest continent by area?",
+      "options": ["Africa", "North America", "Europe", "Asia"],
+      "correctAnswerIndex": 3
+    }
+  },
+  "r2": {
+    "Cinema": {
+      "id": "r2_cinema",
+      "text": "Which film won the first-ever Academy Award for Best Picture in 1929?",
+      "options": ["Wings", "Sunrise", "The Jazz Singer", "Ben-Hur"],
+      "correctAnswerIndex": 0
+    },
+    "Science": {
+      "id": "r2_science",
+      "text": "What is the chemical symbol for gold?",
+      "options": ["Go", "Au", "Ag", "Gd"],
+      "correctAnswerIndex": 1
+    },
+    "Maths": {
+      "id": "r2_maths",
+      "text": "What is the square root of 144?",
+      "options": ["10", "11", "12", "14"],
+      "correctAnswerIndex": 2
+    },
+    "Language": {
+      "id": "r2_language",
+      "text": "Which alphabet is used for writing Russian?",
+      "options": ["Latin", "Greek", "Cyrillic", "Arabic"],
+      "correctAnswerIndex": 2
+    },
+    "Politics": {
+      "id": "r2_politics",
+      "text": "How many permanent members are on the United Nations Security Council?",
+      "options": ["3", "5", "7", "10"],
+      "correctAnswerIndex": 1
+    },
+    "Puzzle": {
+      "id": "r2_puzzle",
+      "text": "What number do you get if you multiply all the digits on a telephone number pad (0–9) together?",
+      "options": ["362880", "3628800", "0", "1"],
+      "correctAnswerIndex": 2
+    },
+    "Sports": {
+      "id": "r2_sports",
+      "text": "In which year were the first modern Olympic Games held?",
+      "options": ["1888", "1896", "1900", "1904"],
+      "correctAnswerIndex": 1
+    },
+    "Mythology": {
+      "id": "r2_mythology",
+      "text": "In Greek mythology, who is the god of the sea?",
+      "options": ["Ares", "Poseidon", "Hephaestus", "Hermes"],
+      "correctAnswerIndex": 1
+    },
+    "History": {
+      "id": "r2_history",
+      "text": "In which year did the Berlin Wall fall?",
+      "options": ["1985", "1987", "1989", "1991"],
+      "correctAnswerIndex": 2
+    },
+    "Food": {
+      "id": "r2_food",
+      "text": "Which country is the origin of the dish paella?",
+      "options": ["Italy", "Spain", "Mexico", "Portugal"],
+      "correctAnswerIndex": 1
+    },
+    "Geography": {
+      "id": "r2_geography",
+      "text": "What is the longest river in Africa?",
+      "options": ["Congo", "Niger", "Zambezi", "Nile"],
+      "correctAnswerIndex": 3
+    }
+  },
+  "r3": {
+    "Cinema": {
+      "id": "r3_cinema",
+      "text": "Which 1972 film won eight Academy Awards but lost Best Picture to 'The Godfather'?",
+      "options": [
+        "Deliverance",
+        "Cabaret",
+        "The Poseidon Adventure",
+        "Sounder"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Science": {
+      "id": "r3_science",
+      "text": "What is the most abundant element in the Earth's crust by mass?",
+      "options": ["Silicon", "Aluminum", "Iron", "Oxygen"],
+      "correctAnswerIndex": 3
+    },
+    "Maths": {
+      "id": "r3_maths",
+      "text": "What is the value of 2 raised to the power of 10?",
+      "options": ["512", "1024", "2048", "4096"],
+      "correctAnswerIndex": 1
+    },
+    "Language": {
+      "id": "r3_language",
+      "text": "Which language family does Finnish belong to?",
+      "options": ["Indo-European", "Uralic", "Altaic", "Sino-Tibetan"],
+      "correctAnswerIndex": 1
+    },
+    "Politics": {
+      "id": "r3_politics",
+      "text": "Which country has the oldest written national constitution still in use?",
+      "options": ["United States", "United Kingdom", "France", "Switzerland"],
+      "correctAnswerIndex": 0
+    },
+    "Puzzle": {
+      "id": "r3_puzzle",
+      "text": "What comes next in the sequence: 2, 6, 18, 54, ...?",
+      "options": ["108", "162", "148", "216"],
+      "correctAnswerIndex": 1
+    },
+    "Sports": {
+      "id": "r3_sports",
+      "text": "In what year did the 'Miracle on Ice' occur, where the US hockey team defeated the Soviet Union at the Winter Olympics?",
+      "options": ["1972", "1976", "1980", "1984"],
+      "correctAnswerIndex": 2
+    },
+    "Mythology": {
+      "id": "r3_mythology",
+      "text": "In Greek mythology, what creature with the body of a lion and head of a human posed a riddle to travellers near Thebes?",
+      "options": ["Griffin", "Sphinx", "Manticore", "Chimera"],
+      "correctAnswerIndex": 1
+    },
+    "History": {
+      "id": "r3_history",
+      "text": "The Treaty of Tordesillas in 1494 divided newly discovered lands between which two countries?",
+      "options": [
+        "England and France",
+        "Spain and Portugal",
+        "Spain and England",
+        "Portugal and the Netherlands"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Food": {
+      "id": "r3_food",
+      "text": "From which country does the cheese Gruyère originate?",
+      "options": ["France", "Switzerland", "Netherlands", "Italy"],
+      "correctAnswerIndex": 1
+    },
+    "Geography": {
+      "id": "r3_geography",
+      "text": "Which strait separates Europe from Asia at Istanbul?",
+      "options": [
+        "Strait of Hormuz",
+        "Strait of Gibraltar",
+        "Bosporus",
+        "Dardanelles"
+      ],
+      "correctAnswerIndex": 2
+    }
+  },
+  "r4": {
+    "Cinema": {
+      "id": "r4_cinema",
+      "text": "Which director has won the most Academy Awards for Best Director?",
+      "options": [
+        "Steven Spielberg",
+        "John Ford",
+        "William Wyler",
+        "Frank Capra"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Science": {
+      "id": "r4_science",
+      "text": "The Chandrasekhar limit, the maximum mass of a stable white dwarf star, is approximately equal to what?",
+      "options": [
+        "0.5 solar masses",
+        "1.4 solar masses",
+        "3.0 solar masses",
+        "10 solar masses"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Maths": {
+      "id": "r4_maths",
+      "text": "What is the sum of all interior angles of a dodecagon (12-sided polygon)?",
+      "options": ["1440°", "1620°", "1800°", "2160°"],
+      "correctAnswerIndex": 2
+    },
+    "Language": {
+      "id": "r4_language",
+      "text": "From which language does the English word 'algebra' originate?",
+      "options": ["Latin", "Greek", "Arabic", "Sanskrit"],
+      "correctAnswerIndex": 2
+    },
+    "Politics": {
+      "id": "r4_politics",
+      "text": "Which country's parliament is called the Knesset?",
+      "options": ["Turkey", "Israel", "Iran", "Egypt"],
+      "correctAnswerIndex": 1
+    },
+    "Puzzle": {
+      "id": "r4_puzzle",
+      "text": "In the Monty Hall problem, if you initially pick a door and the host reveals a goat behind another door, what is your probability of winning the car if you switch?",
+      "options": ["1/2", "1/3", "2/3", "3/4"],
+      "correctAnswerIndex": 2
+    },
+    "Sports": {
+      "id": "r4_sports",
+      "text": "Which athlete has won the most Olympic gold medals of all time?",
+      "options": ["Usain Bolt", "Carl Lewis", "Michael Phelps", "Mark Spitz"],
+      "correctAnswerIndex": 2
+    },
+    "Mythology": {
+      "id": "r4_mythology",
+      "text": "In Egyptian mythology, who is the god of the afterlife who serves as judge of the dead?",
+      "options": ["Anubis", "Ra", "Osiris", "Horus"],
+      "correctAnswerIndex": 2
+    },
+    "History": {
+      "id": "r4_history",
+      "text": "The Battle of Cannae in 216 BC is considered one of the greatest tactical victories in military history. Who commanded the victorious army?",
+      "options": [
+        "Scipio Africanus",
+        "Hannibal",
+        "Julius Caesar",
+        "Alexander the Great"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Food": {
+      "id": "r4_food",
+      "text": "Which spice, derived from the Crocus sativus flower, is the most expensive spice in the world by weight?",
+      "options": ["Vanilla", "Saffron", "Cardamom", "Cinnamon"],
+      "correctAnswerIndex": 1
+    },
+    "Geography": {
+      "id": "r4_geography",
+      "text": "What is the deepest known point in the world's oceans?",
+      "options": [
+        "Tonga Trench",
+        "Puerto Rico Trench",
+        "Java Trench",
+        "Challenger Deep"
+      ],
+      "correctAnswerIndex": 3
+    }
+  },
+  "r5": {
+    "Cinema": {
+      "id": "r5_cinema",
+      "text": "Which 1927 film is widely considered the first feature-length motion picture with synchronized dialogue sequences?",
+      "options": ["Metropolis", "Sunrise", "The Jazz Singer", "The General"],
+      "correctAnswerIndex": 2
+    },
+    "Science": {
+      "id": "r5_science",
+      "text": "What is the approximate age of the universe according to current cosmological models?",
+      "options": [
+        "9.2 billion years",
+        "11.5 billion years",
+        "13.8 billion years",
+        "15.2 billion years"
+      ],
+      "correctAnswerIndex": 2
+    },
+    "Maths": {
+      "id": "r5_maths",
+      "text": "What is the value of the Riemann zeta function ζ(2), famously solved as the Basel problem?",
+      "options": ["π²/4", "π²/6", "π²/8", "π²/12"],
+      "correctAnswerIndex": 1
+    },
+    "Language": {
+      "id": "r5_language",
+      "text": "The Rosetta Stone contains text in three scripts. Besides hieroglyphs and Demotic, what is the third?",
+      "options": ["Latin", "Ancient Greek", "Aramaic", "Coptic"],
+      "correctAnswerIndex": 1
+    },
+    "Politics": {
+      "id": "r5_politics",
+      "text": "Which 1648 treaty is widely considered to have established the principle of state sovereignty in international law?",
+      "options": [
+        "Treaty of Versailles",
+        "Peace of Westphalia",
+        "Treaty of Utrecht",
+        "Congress of Vienna"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Puzzle": {
+      "id": "r5_puzzle",
+      "text": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?",
+      "options": ["$0.10", "$0.05", "$0.15", "$0.01"],
+      "correctAnswerIndex": 1
+    },
+    "Sports": {
+      "id": "r5_sports",
+      "text": "As of 2024, who holds the record for the most Grand Slam singles titles in men's tennis?",
+      "options": [
+        "Rafael Nadal",
+        "Roger Federer",
+        "Novak Djokovic",
+        "Pete Sampras"
+      ],
+      "correctAnswerIndex": 2
+    },
+    "Mythology": {
+      "id": "r5_mythology",
+      "text": "In Japanese mythology, what is the name of the sun goddess considered the ancestor of the Imperial family?",
+      "options": ["Tsukuyomi", "Amaterasu", "Izanami", "Susanoo"],
+      "correctAnswerIndex": 1
+    },
+    "History": {
+      "id": "r5_history",
+      "text": "The Defenestration of Prague in 1618 is considered the triggering event of which major European conflict?",
+      "options": [
+        "Seven Years' War",
+        "War of the Spanish Succession",
+        "Hundred Years' War",
+        "Thirty Years' War"
+      ],
+      "correctAnswerIndex": 3
+    },
+    "Food": {
+      "id": "r5_food",
+      "text": "In classical French cuisine, which of the five 'mother sauces' is made from a light stock thickened with a white roux?",
+      "options": ["Béchamel", "Velouté", "Hollandaise", "Espagnole"],
+      "correctAnswerIndex": 1
+    },
+    "Geography": {
+      "id": "r5_geography",
+      "text": "Which is the only country in the world that lies entirely above 1,000 metres in elevation?",
+      "options": ["Bhutan", "Nepal", "Lesotho", "Bolivia"],
+      "correctAnswerIndex": 2
+    }
+  }
+}

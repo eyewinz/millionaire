@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { GameProvider, useGame } from "./context/GameContext";
+import StartScreen from "./components/StartScreen";
+import GameHeader from "./components/GameHeader";
+import CategorySelect from "./components/CategorySelect";
+import QuestionScreen from "./components/QuestionScreen";
+import RoundSummary from "./components/RoundSummary";
+import GameOver from "./components/GameOver";
 
-function App() {
+const GameContent: React.FC = () => {
+  const { state } = useGame();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {state.phase !== "start" && <GameHeader />}
+
+      <main className="app-main">
+        {state.phase === "start" && <StartScreen />}
+        {state.phase === "category-select" && <CategorySelect />}
+        {(state.phase === "question" || state.phase === "result") && (
+          <QuestionScreen />
+        )}
+        {state.phase === "round-summary" && <RoundSummary />}
+        {state.phase === "game-over" && <GameOver />}
+      </main>
     </div>
   );
-}
+};
+
+const App: React.FC = () => {
+  return (
+    <GameProvider>
+      <GameContent />
+    </GameProvider>
+  );
+};
 
 export default App;
