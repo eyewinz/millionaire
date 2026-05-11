@@ -12,8 +12,8 @@
 
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4e 50%, #0d0d3d 100%);
-    color: #ffffff;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #111111 100%);
+    color: #e4e4e7;
     min-height: 100vh;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;

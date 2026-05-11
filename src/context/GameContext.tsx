@@ -49,7 +49,7 @@ const questions: Question[] = Object.entries(
 // ---------------------------------------------------------------------------
 
 /** All 11 categories available every round. */
-export const ALL_CATEGORIES: Category[] = [
+const ALL_CATEGORIES: Category[] = [
   "Cinema",
   "Science",
   "Maths",

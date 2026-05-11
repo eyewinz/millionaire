@@ -17,18 +17,20 @@ const StartScreen: React.FC = () => {
             per team!
           </li>
           <li>
-            Choose from 11 categories: Cinema, Science, Maths, Language,
-            Politics, Puzzle, Sports, Mythology, History, Food, Geography
+            Each round, both teams pick from a shared pool of all 11 categories
+            — once a category is picked, it's gone for both teams that round.
           </li>
-          <li>Each round features 5 different categories to choose from</li>
           <li>
             Each team has 4 lifelines: Phone a Friend, 50/50, Mystery Box, and
-            Last Chance
+            Last Chance.
           </li>
-          <li>Answer at least 3 out of 5 correctly each round to advance!</li>
           <li>
-            Points double with each correct answer — earn up to 8,000 in the
-            final round!
+            Answer at least 3 out of 5 correctly each round to avoid the penalty
+            — otherwise your total score gets cut in half!
+          </li>
+          <li>
+            Points double with each correct answer in a round — earn up to 8,000
+            in the final round!
           </li>
         </ul>
       </div>

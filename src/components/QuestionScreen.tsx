@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGame } from "../context/GameContext";
 import type { Category, LifelineType } from "../types";
 
@@ -32,6 +32,7 @@ const LIFELINES: LifelineConfig[] = [
 
 const QuestionScreen: React.FC = () => {
   const { state, dispatch } = useGame();
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const currentTeam = state.teams[state.currentTeamIndex];
   const question = state.currentQuestion;
@@ -94,7 +95,16 @@ const QuestionScreen: React.FC = () => {
   };
 
   const handleRevealAnswer = () => {
+    setShowConfirmModal(true);
+  };
+
+  const handleConfirmAnswer = () => {
+    setShowConfirmModal(false);
     dispatch({ type: "REVEAL_ANSWER" });
+  };
+
+  const handleCancelConfirm = () => {
+    setShowConfirmModal(false);
   };
 
   const handleNextQuestion = () => {
@@ -116,18 +126,11 @@ const QuestionScreen: React.FC = () => {
 
   return (
     <div className="question-screen">
-      {/* Header */}
+      {/* Category badge */}
       <div className="question-header">
-        <h2
-          className="question-team-label"
-          data-team={state.currentTeamIndex === 0 ? "A" : "B"}
-        >
-          {currentTeam.name}&rsquo;s Turn
-        </h2>
         {selectedCategory && (
           <p className="question-category">
-            {CATEGORY_EMOJI[selectedCategory]} {selectedCategory} &mdash; Round{" "}
-            {currentRound}
+            {CATEGORY_EMOJI[selectedCategory]} {selectedCategory}
           </p>
         )}
       </div>
@@ -232,6 +235,42 @@ const QuestionScreen: React.FC = () => {
           <button className="question-next-btn" onClick={handleNextQuestion}>
             Next Question
           </button>
+        </div>
+      )}
+
+      {/* Confirmation modal */}
+      {showConfirmModal && selectedAnswerIndex !== null && (
+        <div className="question-overlay">
+          <div className="question-overlay-content">
+            <h3 className="question-overlay-title">Lock in your answer?</h3>
+            <p className="question-overlay-text">
+              You selected:{" "}
+              <strong>
+                {OPTION_LABELS[selectedAnswerIndex]}:{" "}
+                {question.options[selectedAnswerIndex]}
+              </strong>
+            </p>
+            <p
+              className="question-overlay-text"
+              style={{ fontSize: "0.85rem", opacity: 0.6 }}
+            >
+              This cannot be changed once confirmed.
+            </p>
+            <div className="confirm-modal-actions">
+              <button
+                className="question-overlay-btn confirm-modal-btn--confirm"
+                onClick={handleConfirmAnswer}
+              >
+                Confirm
+              </button>
+              <button
+                className="question-overlay-btn confirm-modal-btn--cancel"
+                onClick={handleCancelConfirm}
+              >
+                Go Back
+              </button>
+            </div>
+          </div>
         </div>
       )}
 

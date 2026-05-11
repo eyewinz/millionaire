@@ -27,7 +27,6 @@ const CategorySelect: React.FC = () => {
 
   return (
     <div className="category-select">
-      <h2 className="category-round">Round {state.currentRound}</h2>
       <p className="category-prompt">
         {currentTeam.name}, choose your category!
       </p>

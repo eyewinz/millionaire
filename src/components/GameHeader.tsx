@@ -92,9 +92,11 @@ const GameHeader: React.FC = () => {
 
       <div className="header-center">
         <span className="header-round">Round {currentRound}</span>
+        <span className="header-turn-label">
+          {teams[currentTeamIndex].name}&rsquo;s Turn
+        </span>
         <span className="header-center-team-progress">
-          {teams[currentTeamIndex].name}: {getQuestionNum(currentTeamIndex)} of
-          5
+          Question {getQuestionNum(currentTeamIndex)} of 5
         </span>
       </div>
 

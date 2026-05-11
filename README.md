@@ -55,6 +55,20 @@ The game features **11 knowledge categories**, all available every round:
 | 🍕 | Food | Cuisine, ingredients, cooking, food origins |
 | 🌍 | Geography | Countries, capitals, landmarks, natural features |
 
+### Answer Confirmation Flow
+
+When a question is displayed, the answer flow follows a deliberate multi-step confirmation process:
+
+1. **Select** — The player clicks an answer option. It highlights in green but is **not yet locked in**.
+2. **Final Answer** — The player clicks the "Final Answer" button that appears below the options.
+3. **Confirmation Modal** — A modal overlay appears asking **"Lock in your answer?"** with:
+   - The selected answer displayed
+   - A warning: *"This cannot be changed once confirmed."*
+   - Two buttons: **Confirm** (green — locks in the answer) and **Go Back** (gray — returns to the question)
+4. **Result** — Only after confirming does the answer get locked in, scores update, and the correct/incorrect result is revealed.
+
+This prevents accidental answer submissions and adds dramatic tension — just like the TV show!
+
 ### Penalty System
 
 After each round, both teams are evaluated:
@@ -98,7 +112,7 @@ Each team's panel displays:
 
 | Element | Description |
 |---------|-------------|
-| **Team Name** | "Team A" or "Team B" — highlighted with a gold border when it's that team's turn |
+| **Team Name** | "Team A" or "Team B" — highlighted with a green border when it's that team's turn |
 | **Questions Left** | e.g. "3 Questions left" — how many of their 5 questions remain this round |
 | **Total Score** | Cumulative score across all rounds |
 | **Round Score** | Score earned in the current round only |
@@ -294,12 +308,13 @@ Every round contains **1 question for each of the 11 categories**:
 
 The app features a dramatic, premium design inspired by the TV show:
 
-- **Dark blue/purple gradient** backgrounds
-- **Gold (#FFD700) accents** for titles, buttons, and highlights
-- **Glass-morphism** effects on cards and panels
+- **Dark charcoal/black gradient** backgrounds (`#0a0a0a` → `#1a1a1a`)
+- **Green (#4ade80) accents** for titles, buttons, highlights, and active borders
+- **Glass-morphism** effects on cards and panels (semi-transparent `rgba` backgrounds)
 - **Smooth animations** (fade-in, slide-up, pulse, glow)
 - **Fully responsive** layout for desktop, tablet, and mobile
 - **Large, bold round indicators** for clear game progression
+- **Confirmation modal** with green/gray button styling for the answer lock-in flow
 
 ---
 

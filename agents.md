@@ -69,7 +69,7 @@ All game state lives in a single `GameState` object managed by `useReducer` in `
 - `START_GAME` — initialise and begin round 1
 - `SELECT_CATEGORY` — team picks a category, a question is loaded
 - `SELECT_ANSWER` — team selects an option (before confirming)
-- `REVEAL_ANSWER` — lock in answer, update scores
+- `REVEAL_ANSWER` — lock in answer, update scores (only dispatched after user confirms via the confirmation modal)
 - `NEXT_QUESTION` — advance to next team/question or end round
 - `USE_LIFELINE` — activate a lifeline (phone, fifty, mystery, lastChance)
 - `DISMISS_LIFELINE` — close the lifeline overlay
@@ -86,6 +86,12 @@ All game state lives in a single `GameState` object managed by `useReducer` in `
 | `result` | `GameHeader` + `QuestionScreen` (answer revealed) |
 | `round-summary` | `GameHeader` + `RoundSummary` |
 | `game-over` | `GameOver` |
+
+> **Note:** `QuestionScreen` manages a local `showConfirmModal` boolean state via `useState` for the answer confirmation flow. This is a **UI-only** concern — no reducer actions or global state changes were needed. The flow is:
+> 1. `SELECT_ANSWER` dispatch → answer option highlights
+> 2. User clicks "Final Answer" → `setShowConfirmModal(true)` (modal appears)
+> 3. User clicks **Confirm** → `setShowConfirmModal(false)` + `REVEAL_ANSWER` dispatch (answer locked in)
+> 4. User clicks **Go Back** → `setShowConfirmModal(false)` (returns to question, selection preserved)
 
 ### Scoring
 
