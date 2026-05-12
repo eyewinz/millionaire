@@ -10,7 +10,8 @@ export type Category =
   | "Mythology"
   | "History"
   | "Food"
-  | "Geography";
+  | "Geography"
+  | "Nature";
 
 // ——— Question ———
 export interface Question {

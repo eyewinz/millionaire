@@ -75,6 +75,12 @@
       "text": "What is the largest continent by area?",
       "options": ["Africa", "North America", "Europe", "Asia"],
       "correctAnswerIndex": 3
+    },
+    "Nature": {
+      "id": "r1_nature",
+      "text": "What is the largest land animal currently living on Earth?",
+      "options": ["Elephant", "Giraffe", "Hippopotamus", "Rhinoceros"],
+      "correctAnswerIndex": 0
     }
   },
   "r2": {
@@ -143,6 +149,12 @@
       "text": "What is the longest river in Africa?",
       "options": ["Congo", "Niger", "Zambezi", "Nile"],
       "correctAnswerIndex": 3
+    },
+    "Nature": {
+      "id": "r2_nature",
+      "text": "Which bird is known for its ability to mimic human speech?",
+      "options": ["Eagle", "Parrot", "Sparrow", "Penguin"],
+      "correctAnswerIndex": 1
     }
   },
   "r3": {
@@ -224,6 +236,17 @@
         "Strait of Gibraltar",
         "Bosporus",
         "Dardanelles"
+      ],
+      "correctAnswerIndex": 2
+    },
+    "Nature": {
+      "id": "r3_nature",
+      "text": "What is the process by which plants convert sunlight into energy called?",
+      "options": [
+        "Respiration",
+        "Fermentation",
+        "Photosynthesis",
+        "Transpiration"
       ],
       "correctAnswerIndex": 2
     }
@@ -314,6 +337,12 @@
         "Challenger Deep"
       ],
       "correctAnswerIndex": 3
+    },
+    "Nature": {
+      "id": "r4_nature",
+      "text": "Which animal has the longest migration route of any mammal, traveling up to 12,000 miles round trip?",
+      "options": ["Blue Whale", "Gray Whale", "Caribou", "Wildebeest"],
+      "correctAnswerIndex": 1
     }
   },
   "r5": {
@@ -401,6 +430,12 @@
       "id": "r5_geography",
       "text": "Which is the only country in the world that lies entirely above 1,000 metres in elevation?",
       "options": ["Bhutan", "Nepal", "Lesotho", "Bolivia"],
+      "correctAnswerIndex": 2
+    },
+    "Nature": {
+      "id": "r5_nature",
+      "text": "What is the only mammal capable of true sustained flight?",
+      "options": ["Flying Squirrel", "Colugo", "Bat", "Sugar Glider"],
       "correctAnswerIndex": 2
     }
   }

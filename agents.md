@@ -6,7 +6,7 @@ This document describes the project for AI coding agents working on the codebase
 
 ## Project Overview
 
-A two-team quiz game built with React + TypeScript (Create React App). Two teams alternate answering questions across 5 rounds. Each round offers all 11 categories in a shared pool; once a category is picked by either team, it's removed for the rest of that round.
+A two-team quiz game built with React + TypeScript (Create React App). Two teams alternate answering questions across 5 rounds. Each round offers all 12 categories in a shared pool; once a category is picked by either team, it's removed for the rest of that round.
 
 ---
 
@@ -32,12 +32,15 @@ millionaire/
 │   │   ├── GameHeader.tsx
 │   │   ├── CategorySelect.tsx
 │   │   ├── QuestionScreen.tsx
+│   │   ├── AnswerResult.tsx
 │   │   ├── RoundSummary.tsx
 │   │   └── GameOver.tsx
 │   ├── context/
 │   │   └── GameContext.tsx   # State, reducer, actions, helpers
+│   ├── utils/
+│   │   └── audio.ts         # Web Audio API sound effects (tick, chime, success fanfare, failure sound)
 │   ├── data/
-│   │   └── questions.json   # 55 questions nested as { r1: { Category: Q }, ... }
+│   │   └── questions.json   # 60 questions nested as { r1: { Category: Q }, ... }
 │   ├── types/
 │   │   └── index.ts         # All TypeScript types/interfaces
 │   ├── App.tsx              # Root — renders current phase component
@@ -61,7 +64,7 @@ All game state lives in a single `GameState` object managed by `useReducer` in `
 - `teams` — tuple of two `Team` objects (scores, lifelines, round stats)
 - `currentTeamIndex` — `0 | 1`, alternates each question
 - `currentRound` — 1 through 5
-- `availableCategories` — shared `Category[]` pool, starts with all 11 each round
+- `availableCategories` — shared `Category[]` pool, starts with all 12 each round
 - `currentQuestion` — the active `Question` object (or null)
 - `questionsAnswered` — history of all answered questions with correctness
 
@@ -76,6 +79,14 @@ All game state lives in a single `GameState` object managed by `useReducer` in `
 - `CONTINUE_AFTER_ROUND` — apply penalties, advance to next round or end game
 - `RESET_GAME` — return to initial state
 
+### Audio
+
+Audio is managed via a utility module `src/utils/audio.ts` using the Web Audio API. It uses a lazy-initialized singleton `AudioContext`. Sound effects include:
+- **Ticking clock** — plays on the question screen while the timer counts down
+- **Confirmation chime** — plays when the confirmation modal appears
+- **Success fanfare** — plays on the answer result screen for correct answers
+- **Failure sound** — plays on the answer result screen for wrong answers
+
 ### Component Rendering by Phase
 
 | Phase | Component |
@@ -83,15 +94,17 @@ All game state lives in a single `GameState` object managed by `useReducer` in `
 | `start` | `StartScreen` |
 | `category-select` | `GameHeader` + `CategorySelect` |
 | `question` | `GameHeader` + `QuestionScreen` |
-| `result` | `GameHeader` + `QuestionScreen` (answer revealed) |
+| `result` | `AnswerResult` (full-screen — `GameHeader` is hidden) |
 | `round-summary` | `GameHeader` + `RoundSummary` |
 | `game-over` | `GameOver` |
 
 > **Note:** `QuestionScreen` manages a local `showConfirmModal` boolean state via `useState` for the answer confirmation flow. This is a **UI-only** concern — no reducer actions or global state changes were needed. The flow is:
 > 1. `SELECT_ANSWER` dispatch → answer option highlights
-> 2. User clicks "Final Answer" → `setShowConfirmModal(true)` (modal appears)
-> 3. User clicks **Confirm** → `setShowConfirmModal(false)` + `REVEAL_ANSWER` dispatch (answer locked in)
-> 4. User clicks **Go Back** → `setShowConfirmModal(false)` (returns to question, selection preserved)
+> 2. User clicks "Final Answer" → ticking stops, confirmation chime plays, `setShowConfirmModal(true)` (modal appears)
+> 3. User clicks **Confirm** → `setShowConfirmModal(false)` + `REVEAL_ANSWER` dispatch → phase becomes `result`
+> 4. User clicks **Go Back** → `setShowConfirmModal(false)`, ticking resumes
+> 5. `result` phase renders `AnswerResult` component with full-screen success/failure animation + sounds
+> 6. User clicks **Continue** → `NEXT_QUESTION` dispatch → back to `category-select` or `round-summary`
 
 ### Scoring
 
@@ -103,10 +116,10 @@ Exponential doubling per round:
 
 ### Category Pool Mechanic
 
-- Each round starts with all 11 categories available in a single shared array
+- Each round starts with all 12 categories available in a single shared array
 - When either team picks a category, it's removed from the pool
-- 10 questions per round (5 per team) means 10 categories get used, 1 remains unused
-- Pool resets to all 11 at the start of each new round
+- 10 questions per round (5 per team) means 10 categories get used, 2 remain unused
+- Pool resets to all 12 at the start of each new round
 
 ### Question Lookup
 
@@ -151,7 +164,8 @@ The `round` and `category` fields are NOT stored on the question object — they
 1. Add the category string to the `Category` type union in `types/index.ts`
 2. Add it to `ALL_CATEGORIES` in `context/GameContext.tsx`
 3. Add an emoji mapping in `CategorySelect.tsx` (`CATEGORY_EMOJI` record)
-4. Add a question entry per round for the new category in `questions.json` (under each `r1`...`r5` key)
+4. Add an emoji mapping in `QuestionScreen.tsx` (`CATEGORY_EMOJI` record) — note that `AnswerResult.tsx` does NOT use category emojis, so no update is needed there
+5. Add a question entry per round for the new category in `questions.json` (under each `r1`...`r5` key)
 
 ### Adding a new lifeline
 
@@ -160,6 +174,10 @@ The `round` and `category` fields are NOT stored on the question object — they
 3. Handle it in the `USE_LIFELINE` case of the reducer
 4. Add UI for it in `QuestionScreen.tsx`
 5. Add the emoji/icon in `GameHeader.tsx`'s `TeamPanel`
+
+### Working with audio
+
+Audio functions are defined in `src/utils/audio.ts` and are imported/called from components directly. To add a new sound effect, add a function to `audio.ts` that synthesizes the sound using `AudioContext` oscillators and gain nodes, then import and call it from the relevant component.
 
 ### Adding a new game phase
 

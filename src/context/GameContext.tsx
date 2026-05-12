@@ -61,6 +61,7 @@ const ALL_CATEGORIES: Category[] = [
   "History",
   "Food",
   "Geography",
+  "Nature",
 ];
 
 /** Base points awarded per round (multiplied by 2 for each additional correct). */

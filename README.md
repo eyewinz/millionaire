@@ -6,7 +6,7 @@ A responsive React web application themed after *Who Wants to Be a Millionaire?*
 
 ## 📸 Overview
 
-Two teams compete head-to-head across **5 rounds of 5 questions each** — **25 questions per team** (50 total). Every round, both teams choose from a **shared pool of all 11 knowledge categories**. Once a category is picked by either team, it's removed from the pool for the rest of that round. Each team has **4 lifelines** to use strategically. Points double with each correct answer, and teams must answer at least 3 out of 5 correctly each round to avoid a score penalty!
+Two teams compete head-to-head across **5 rounds of 5 questions each** — **25 questions per team** (50 total). Every round, both teams choose from a **shared pool of all 12 knowledge categories**. Once a category is picked by either team, it's removed from the pool for the rest of that round. After answering, a **full-screen Answer Result Screen** shows success or failure with animations before continuing. Each team has **4 lifelines** to use strategically. Points double with each correct answer, and teams must answer at least 3 out of 5 correctly each round to avoid a score penalty!
 
 ---
 
@@ -22,24 +22,24 @@ Two teams compete head-to-head across **5 rounds of 5 questions each** — **25 
 
 - The game consists of **5 rounds**, each containing **10 question events** (5 per team).
 - Within each round, teams alternate turns and select from a **shared category pool**.
-- Each round starts with **all 11 categories** available. Once either team picks a category, it is **removed from the pool for both teams** for the remainder of that round.
-- After 10 picks (5 per team), 1 category remains unused. The pool **resets to all 11** at the start of the next round.
+- Each round starts with **all 12 categories** available. Once either team picks a category, it is **removed from the pool for both teams** for the remainder of that round.
+- After 10 picks (5 per team), 2 categories remain unused. The pool **resets to all 12** at the start of the next round.
 
 ### Category Selection Flow (Example)
 
 | Step | Team | Categories Available | Picks |
 |------|------|---------------------|-------|
-| R1 Q1 | Team A | All 11 | 🎬 Cinema |
-| R1 Q1 | Team B | 10 remaining | ⚽ Sports |
-| R1 Q2 | Team A | 9 remaining | 🔢 Maths |
-| R1 Q2 | Team B | 8 remaining | 📜 History |
+| R1 Q1 | Team A | All 12 | 🎬 Cinema |
+| R1 Q1 | Team B | 11 remaining | ⚽ Sports |
+| R1 Q2 | Team A | 10 remaining | 🔢 Maths |
+| R1 Q2 | Team B | 9 remaining | 📜 History |
 | ... | ... | ... | ... |
-| R1 Q5 | Team B | 2 remaining | 🍕 Food |
-| **R2 Q1** | **Team A** | **All 11 (reset)** | ... |
+| R1 Q5 | Team B | 3 remaining | 🍕 Food |
+| **R2 Q1** | **Team A** | **All 12 (reset)** | ... |
 
 ### Categories
 
-The game features **11 knowledge categories**, all available every round:
+The game features **12 knowledge categories**, all available every round:
 
 | Emoji | Category | Description |
 |-------|----------|-------------|
@@ -54,6 +54,7 @@ The game features **11 knowledge categories**, all available every round:
 | 📜 | History | World history events, figures, dates |
 | 🍕 | Food | Cuisine, ingredients, cooking, food origins |
 | 🌍 | Geography | Countries, capitals, landmarks, natural features |
+| 🌿 | Nature | Animals, birds, plants, ecosystems |
 
 ### Answer Confirmation Flow
 
@@ -65,7 +66,8 @@ When a question is displayed, the answer flow follows a deliberate multi-step co
    - The selected answer displayed
    - A warning: *"This cannot be changed once confirmed."*
    - Two buttons: **Confirm** (green — locks in the answer) and **Go Back** (gray — returns to the question)
-4. **Result** — Only after confirming does the answer get locked in, scores update, and the correct/incorrect result is revealed.
+4. **Answer Feedback** — A full-screen intermediate page appears showing success (🎉 confetti animation) or failure (😢 sad emoji rain) with the result, correct answer (if wrong), round score, total score, and a Continue button.
+5. **Continue** — Clicking Continue returns to the category selection screen for the next turn.
 
 This prevents accidental answer submissions and adds dramatic tension — just like the TV show!
 
@@ -149,6 +151,21 @@ The Last Chance lifeline has special unlock conditions:
 
 ---
 
+## 🔊 Sound Effects
+
+The game features dynamic sound effects generated entirely in the browser — no external audio files needed. All sounds are synthesized programmatically using the **Web Audio API**.
+
+| Sound | Trigger | Description |
+|-------|---------|-------------|
+| **Ticking Clock** | Question screen | A clock-like tick plays every second during the question screen, building tension until the answer is submitted. |
+| **Confirmation Chime** | Final Answer modal | A short ascending chime plays when the "Final Answer" confirmation modal appears. |
+| **Success Fanfare** | Answer Result (correct) | A triumphant ascending arpeggio plays on the answer result screen when the answer is correct. |
+| **Failure Sound** | Answer Result (wrong) | A descending tone plays on the answer result screen when the answer is wrong. |
+
+> **Note:** All sounds are generated programmatically using the Web Audio API — no external audio files needed.
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -193,12 +210,15 @@ millionaire/
 │   │   ├── GameHeader.tsx       # Persistent header bar (team panels + center HUD)
 │   │   ├── CategorySelect.tsx   # Shared category picker for the active team
 │   │   ├── QuestionScreen.tsx   # Question display, options, lifelines
+│   │   ├── AnswerResult.tsx     # Full-screen answer feedback (success/failure animation)
 │   │   ├── RoundSummary.tsx     # End-of-round results with scoring
 │   │   └── GameOver.tsx         # Final results and winner
 │   ├── context/
 │   │   └── GameContext.tsx      # Game state management (useReducer + Context)
 │   ├── data/
 │   │   └── questions.json       # Question bank (editable!)
+│   ├── utils/
+│   │   └── audio.ts             # Web Audio API sound effects (tick, chimes, fanfare)
 │   ├── types/
 │   │   └── index.ts             # TypeScript interfaces & types
 │   ├── App.tsx                  # Root component
@@ -230,7 +250,8 @@ All questions live in **`src/data/questions.json`**. The file is a nested JSON o
     "Mythology": { ... },
     "History": { ... },
     "Food": { ... },
-    "Geography": { ... }
+    "Geography": { ... },
+    "Nature": { ... }
   },
   "r2": { ... },
   "r3": { ... },
@@ -240,7 +261,7 @@ All questions live in **`src/data/questions.json`**. The file is a nested JSON o
 ```
 
 - **Top-level keys**: `r1` through `r5` (one per round)
-- **Second-level keys**: Category names (all 11 per round)
+- **Second-level keys**: Category names (all 12 per round)
 - **Values**: Question objects
 
 ### Question Fields
@@ -271,7 +292,7 @@ All questions live in **`src/data/questions.json`**. The file is a nested JSON o
 
 ### Rules for Editing
 
-1. **55 questions total** — 11 categories × 5 rounds = 1 question per category per round.
+1. **60 questions total** — 12 categories × 5 rounds = 1 question per category per round.
 2. Each `id` must be **unique** (format: `r{round}_{category}`, e.g. `r1_cinema`, `r3_sports`).
 3. `options` must contain **exactly 4 strings**.
 4. `correctAnswerIndex` is **0-based** (0 = first option, 3 = last option).
@@ -280,15 +301,15 @@ All questions live in **`src/data/questions.json`**. The file is a nested JSON o
 
 ### Question Distribution
 
-Every round contains **1 question for each of the 11 categories**:
+Every round contains **1 question for each of the 12 categories**:
 
 | Round | Difficulty | Questions |
 |-------|------------|----------|
-| **1** | Easy | 11 (one per category) |
-| **2** | Medium-Easy | 11 (one per category) |
-| **3** | Medium | 11 (one per category) |
-| **4** | Hard | 11 (one per category) |
-| **5** | Expert | 11 (one per category) |
+| **1** | Easy | 12 (one per category) |
+| **2** | Medium-Easy | 12 (one per category) |
+| **3** | Medium | 12 (one per category) |
+| **4** | Hard | 12 (one per category) |
+| **5** | Expert | 12 (one per category) |
 
 ---
 
@@ -299,7 +320,8 @@ Every round contains **1 question for each of the 11 categories**:
 | **React 18** | UI framework |
 | **TypeScript** | Type safety across all components and state logic |
 | **React Context + useReducer** | Global state management |
-| **CSS3** | Custom styling with animations, gradients, and responsive design |
+| **CSS3** | Custom styling with animations (including confetti & emoji rain), gradients, and responsive design |
+| **Web Audio API** | Programmatic sound effects (ticking clock, chimes, fanfare) — no external audio files |
 | **Create React App** | Project scaffolding and build tooling |
 
 ---
@@ -315,6 +337,8 @@ The app features a dramatic, premium design inspired by the TV show:
 - **Fully responsive** layout for desktop, tablet, and mobile
 - **Large, bold round indicators** for clear game progression
 - **Confirmation modal** with green/gray button styling for the answer lock-in flow
+- **Answer Result Screen** with confetti animation (correct) and sad emoji rain (incorrect)
+- **Programmatic sound effects** via the Web Audio API for ticking clock, chimes, and fanfare
 
 ---
 

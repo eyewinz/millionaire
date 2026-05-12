@@ -14,6 +14,7 @@ const CATEGORY_EMOJI: Record<Category, string> = {
   History: "📜",
   Food: "🍕",
   Geography: "🌍",
+  Nature: "🌿",
 };
 
 const CategorySelect: React.FC = () => {

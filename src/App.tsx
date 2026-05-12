@@ -5,6 +5,7 @@ import StartScreen from "./components/StartScreen";
 import GameHeader from "./components/GameHeader";
 import CategorySelect from "./components/CategorySelect";
 import QuestionScreen from "./components/QuestionScreen";
+import AnswerResult from "./components/AnswerResult";
 import RoundSummary from "./components/RoundSummary";
 import GameOver from "./components/GameOver";
 
@@ -13,14 +14,13 @@ const GameContent: React.FC = () => {
 
   return (
     <div className="app">
-      {state.phase !== "start" && <GameHeader />}
+      {state.phase !== "start" && state.phase !== "result" && <GameHeader />}
 
       <main className="app-main">
         {state.phase === "start" && <StartScreen />}
         {state.phase === "category-select" && <CategorySelect />}
-        {(state.phase === "question" || state.phase === "result") && (
-          <QuestionScreen />
-        )}
+        {state.phase === "question" && <QuestionScreen />}
+        {state.phase === "result" && <AnswerResult />}
         {state.phase === "round-summary" && <RoundSummary />}
         {state.phase === "game-over" && <GameOver />}
       </main>

@@ -67,6 +67,63 @@
     }
 }
 
+@keyframes particleFall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes resultBounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes resultPulseGlow {
+    0%,
+    100% {
+        text-shadow:
+            0 0 10px currentColor,
+            0 0 20px currentColor;
+    }
+    50% {
+        text-shadow:
+            0 0 20px currentColor,
+            0 0 40px currentColor,
+            0 0 60px currentColor;
+    }
+}
+
+@keyframes resultSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* -------------------------------------------------------
    START SCREEN
    ------------------------------------------------------- */
@@ -702,6 +759,179 @@
 }
 
 /* -------------------------------------------------------
+   ANSWER RESULT (Intermediate feedback screen)
+   ------------------------------------------------------- */
+
+.answer-result-screen {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.answer-result-screen--success {
+    background: linear-gradient(180deg, #0a1a0a 0%, #0d2818 50%, #0a0a0a 100%);
+}
+
+.answer-result-screen--failure {
+    background: linear-gradient(180deg, #1a0a0a 0%, #280d0d 50%, #0a0a0a 100%);
+}
+
+/* Particle container — full screen behind content */
+.answer-result-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.answer-result-particle {
+    position: absolute;
+    top: -5vh;
+    animation: particleFall linear infinite;
+    will-change: transform;
+    user-select: none;
+}
+
+/* Content card — sits above particles */
+.answer-result-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 32px;
+    max-width: 480px;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 24px;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: resultSlideUp 0.6s ease both;
+}
+
+.answer-result-icon {
+    font-size: 4rem;
+    margin-bottom: 12px;
+    animation: resultBounceIn 0.6s ease both;
+}
+
+.answer-result-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    animation: resultBounceIn 0.6s ease 0.1s both;
+}
+
+.answer-result-title--correct {
+    color: #4ade80;
+    animation:
+        resultBounceIn 0.6s ease 0.1s both,
+        resultPulseGlow 2s ease-in-out 0.7s infinite;
+}
+
+.answer-result-title--wrong {
+    color: #ef5350;
+    animation:
+        resultBounceIn 0.6s ease 0.1s both,
+        resultPulseGlow 2s ease-in-out 0.7s infinite;
+}
+
+.answer-result-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 16px;
+    animation: resultSlideUp 0.5s ease 0.2s both;
+}
+
+.answer-result-correct-answer {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background: rgba(239, 83, 80, 0.15);
+    border: 1px solid rgba(239, 83, 80, 0.3);
+    border-radius: 12px;
+    animation: resultSlideUp 0.5s ease 0.25s both;
+}
+
+.answer-result-correct-answer strong {
+    color: #ef9a9a;
+}
+
+/* Points summary cards */
+.answer-result-points {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 20px;
+    animation: resultSlideUp 0.5s ease 0.3s both;
+}
+
+.answer-result-points-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 24px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    min-width: 120px;
+}
+
+.answer-result-points-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.answer-result-points-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #4ade80;
+}
+
+.answer-result-team {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 24px;
+    animation: resultSlideUp 0.5s ease 0.35s both;
+}
+
+.answer-result-continue-btn {
+    background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
+    color: #0a0a0a;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 16px 52px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 20px rgba(74, 222, 128, 0.3);
+    animation: resultSlideUp 0.5s ease 0.4s both;
+}
+
+.answer-result-continue-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 6px 30px rgba(74, 222, 128, 0.5);
+    background: linear-gradient(180deg, #86efac 0%, #4ade80 100%);
+}
+
+.answer-result-continue-btn:active {
+    transform: scale(0.98);
+}
+
+/* -------------------------------------------------------
    ROUND SUMMARY
    ------------------------------------------------------- */
 
@@ -1178,6 +1408,41 @@
     .gameover-play-again {
         padding: 14px 36px;
         font-size: 1.05rem;
+    }
+
+    /* ---- Answer Result ---- */
+    .answer-result-content {
+        padding: 28px 20px;
+    }
+
+    .answer-result-icon {
+        font-size: 3rem;
+    }
+
+    .answer-result-title {
+        font-size: 1.8rem;
+    }
+
+    .answer-result-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .answer-result-points {
+        gap: 10px;
+    }
+
+    .answer-result-points-card {
+        padding: 10px 16px;
+        min-width: 100px;
+    }
+
+    .answer-result-points-value {
+        font-size: 1.2rem;
+    }
+
+    .answer-result-continue-btn {
+        padding: 14px 36px;
+        font-size: 1rem;
     }
 }
 

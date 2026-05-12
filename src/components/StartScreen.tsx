@@ -17,7 +17,7 @@ const StartScreen: React.FC = () => {
             per team!
           </li>
           <li>
-            Each round, both teams pick from a shared pool of all 11 categories
+            Each round, both teams pick from a shared pool of all 12 categories
             — once a category is picked, it's gone for both teams that round.
           </li>
           <li>

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGame } from "../context/GameContext";
 import type { Category, LifelineType } from "../types";
+import { startTicking, stopTicking, playConfirmPopup } from "../utils/audio";
 
 const CATEGORY_EMOJI: Record<Category, string> = {
   Cinema: "🎬",
@@ -14,6 +15,7 @@ const CATEGORY_EMOJI: Record<Category, string> = {
   History: "📜",
   Food: "🍕",
   Geography: "🌍",
+  Nature: "🌿",
 };
 
 const OPTION_LABELS = ["A", "B", "C", "D"];
@@ -44,6 +46,14 @@ const QuestionScreen: React.FC = () => {
     !currentTeam.lifelines.fifty &&
     !currentTeam.lifelines.mystery;
 
+  // Start ticking sound when question screen mounts, stop on unmount
+  useEffect(() => {
+    startTicking();
+    return () => {
+      stopTicking();
+    };
+  }, []);
+
   if (!question) {
     return null;
   }
@@ -54,11 +64,7 @@ const QuestionScreen: React.FC = () => {
     activeLifeline,
     phase,
     selectedCategory,
-    currentRound,
   } = state;
-
-  const isCorrect =
-    isAnswerRevealed && selectedAnswerIndex === question.correctAnswerIndex;
 
   // Determine which option indices are hidden by 50/50 (persists after overlay dismissal)
   const hiddenIndices: number[] = state.fiftyFiftyIndices;
@@ -95,6 +101,8 @@ const QuestionScreen: React.FC = () => {
   };
 
   const handleRevealAnswer = () => {
+    stopTicking();
+    playConfirmPopup();
     setShowConfirmModal(true);
   };
 
@@ -105,10 +113,7 @@ const QuestionScreen: React.FC = () => {
 
   const handleCancelConfirm = () => {
     setShowConfirmModal(false);
-  };
-
-  const handleNextQuestion = () => {
-    dispatch({ type: "NEXT_QUESTION" });
+    startTicking();
   };
 
   const handleUseLifeline = (lifeline: LifelineType) => {
@@ -220,22 +225,6 @@ const QuestionScreen: React.FC = () => {
             </div>
           )}
         </>
-      )}
-
-      {/* Result feedback (after reveal) */}
-      {phase === "result" && isAnswerRevealed && (
-        <div className="question-result">
-          {isCorrect ? (
-            <p className="question-result question-result--correct">
-              Correct! 🎉
-            </p>
-          ) : (
-            <p className="question-result question-result--wrong">Wrong! ❌</p>
-          )}
-          <button className="question-next-btn" onClick={handleNextQuestion}>
-            Next Question
-          </button>
-        </div>
       )}
 
       {/* Confirmation modal */}
