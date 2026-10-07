@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { useGame, calculateRoundScore } from "../context/GameContext";
-import { playSuccess, playFailure } from "../utils/audio";
+import { playSuccessSound, playFailure } from "../utils/audio";
 
 const SUCCESS_EMOJIS = ["🎉", "✨", "🌟", "⭐", "🎊", "💫", "🥳", "🏆"];
 const FAILURE_EMOJIS = ["😢", "😞", "😔", "💔", "😿", "🥺", "😥", "☹️"];
@@ -37,7 +37,7 @@ const AnswerResult: React.FC = () => {
   // Play sound on mount
   useEffect(() => {
     if (isCorrect) {
-      playSuccess();
+      playSuccessSound();
     } else {
       playFailure();
     }
@@ -74,9 +74,7 @@ const AnswerResult: React.FC = () => {
       {/* Content overlay */}
       <div className="answer-result-content">
         {/* Big result icon */}
-        <div className="answer-result-icon">
-          {isCorrect ? "🎉" : "😢"}
-        </div>
+        <div className="answer-result-icon">{isCorrect ? "🎉" : "😢"}</div>
 
         {/* Title */}
         <h1
@@ -104,9 +102,7 @@ const AnswerResult: React.FC = () => {
         <div className="answer-result-points">
           <div className="answer-result-points-card">
             <span className="answer-result-points-label">Round Score</span>
-            <span className="answer-result-points-value">
-              {roundScore} pts
-            </span>
+            <span className="answer-result-points-value">{roundScore} pts</span>
           </div>
           <div className="answer-result-points-card">
             <span className="answer-result-points-label">Total Score</span>

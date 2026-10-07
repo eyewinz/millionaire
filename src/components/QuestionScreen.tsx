@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useGame } from "../context/GameContext";
 import type { Category, LifelineType } from "../types";
-import { startTicking, stopTicking, playConfirmPopup } from "../utils/audio";
+import {
+  playConfirmPopup,
+  startGameMusic,
+  stopGameMusic,
+} from "../utils/audio";
 
 const CATEGORY_EMOJI: Record<Category, string> = {
   Cinema: "🎬",
@@ -46,11 +50,11 @@ const QuestionScreen: React.FC = () => {
     !currentTeam.lifelines.fifty &&
     !currentTeam.lifelines.mystery;
 
-  // Start ticking sound when question screen mounts, stop on unmount
+  // Start game music when question screen mounts, stop on unmount
   useEffect(() => {
-    startTicking();
+    startGameMusic();
     return () => {
-      stopTicking();
+      stopGameMusic();
     };
   }, []);
 
@@ -101,7 +105,7 @@ const QuestionScreen: React.FC = () => {
   };
 
   const handleRevealAnswer = () => {
-    stopTicking();
+    stopGameMusic();
     playConfirmPopup();
     setShowConfirmModal(true);
   };
@@ -113,7 +117,7 @@ const QuestionScreen: React.FC = () => {
 
   const handleCancelConfirm = () => {
     setShowConfirmModal(false);
-    startTicking();
+    startGameMusic();
   };
 
   const handleUseLifeline = (lifeline: LifelineType) => {
