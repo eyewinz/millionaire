@@ -36,6 +36,13 @@ const LIFELINES: LifelineConfig[] = [
   { type: "mystery", emoji: "🎁", label: "Mystery Box" },
 ];
 
+const LIFELINE_INFO: Record<LifelineType, { emoji: string; label: string }> = {
+  phone: { emoji: "📞", label: "Phone a Friend" },
+  fifty: { emoji: "✂️", label: "50/50" },
+  mystery: { emoji: "🎁", label: "Mystery Box" },
+  lastChance: { emoji: "↩️", label: "Last Chance" },
+};
+
 const QuestionScreen: React.FC = () => {
   const { state, dispatch } = useGame();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -43,8 +50,12 @@ const QuestionScreen: React.FC = () => {
   const currentTeam = state.teams[state.currentTeamIndex];
   const question = state.currentQuestion;
 
+  // Only one lifeline is allowed per question.
+  const lifelineUsedThisQuestion = state.lifelineUsedThisQuestion;
+
   const canUseLastChance =
     state.currentRound >= 4 &&
+    !lifelineUsedThisQuestion &&
     currentTeam.lifelines.lastChance &&
     !currentTeam.lifelines.phone &&
     !currentTeam.lifelines.fifty &&
@@ -164,6 +175,22 @@ const QuestionScreen: React.FC = () => {
         ))}
       </div>
 
+      {/* Lifeline-used confirmation (only for the question it was used on) */}
+      {!isAnswerRevealed &&
+        lifelineUsedThisQuestion &&
+        LIFELINE_INFO[lifelineUsedThisQuestion] && (
+          <div className="question-lifeline-used-banner" role="status">
+            <span className="question-lifeline-used-icon">
+              {LIFELINE_INFO[lifelineUsedThisQuestion].emoji}
+            </span>
+            <span>
+              You have successfully used the{" "}
+              <strong>{LIFELINE_INFO[lifelineUsedThisQuestion].label}</strong>{" "}
+              lifeline.
+            </span>
+          </div>
+        )}
+
       {/* Confirm / Lock-in button */}
       {!isAnswerRevealed && (
         <button
@@ -181,14 +208,22 @@ const QuestionScreen: React.FC = () => {
           <div className="question-lifelines">
             {LIFELINES.map(({ type, emoji, label }) => {
               const isUsed = !currentTeam.lifelines[type];
+              const isLocked = isUsed || lifelineUsedThisQuestion !== null;
               return (
                 <button
                   key={type}
                   className={`question-lifeline-btn${
-                    isUsed ? " question-lifeline-btn--used" : ""
+                    isLocked ? " question-lifeline-btn--used" : ""
                   }`}
-                  disabled={isUsed}
+                  disabled={isLocked}
                   onClick={() => handleUseLifeline(type)}
+                  title={
+                    isUsed
+                      ? "Already used"
+                      : lifelineUsedThisQuestion
+                        ? "Only one lifeline per question"
+                        : ""
+                  }
                 >
                   {emoji} {label}
                 </button>

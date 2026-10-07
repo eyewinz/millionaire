@@ -192,6 +192,7 @@ const initialState: GameState = {
   isAnswerRevealed: false,
   activeLifeline: null,
   fiftyFiftyIndices: [],
+  lifelineUsedThisQuestion: null,
   questionsAnswered: [],
   skippedQuestionIds: [],
 };
@@ -241,6 +242,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         isAnswerRevealed: false,
         activeLifeline: null,
         fiftyFiftyIndices: [],
+        lifelineUsedThisQuestion: null,
       };
     }
 
@@ -399,6 +401,9 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const { lifeline } = action;
       const team = state.teams[state.currentTeamIndex];
 
+      // Only one lifeline may be used per question.
+      if (state.lifelineUsedThisQuestion !== null) return state;
+
       // ---- Last Chance (special handling) ----
       if (lifeline === "lastChance") {
         if (state.currentRound < 4) return state;
@@ -430,6 +435,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           isAnswerRevealed: false,
           activeLifeline: null,
           fiftyFiftyIndices: [],
+          lifelineUsedThisQuestion: null,
           selectedCategory: null,
         };
       }
@@ -456,6 +462,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         teams: updatedTeams,
         activeLifeline: result,
         fiftyFiftyIndices: newFiftyFiftyIndices,
+        lifelineUsedThisQuestion: lifeline,
       };
     }
 

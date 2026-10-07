@@ -1,4 +1,2 @@
-To Show unslected catergories at the round summary
-To Chnages the sound effects
-State save
+
 Add questions and answers

@@ -662,6 +662,31 @@
     font-style: italic;
 }
 
+.question-lifeline-used-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    padding: 10px 20px;
+    background: rgba(74, 222, 128, 0.1);
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    border-radius: 12px;
+    color: #86efac;
+    font-size: 0.95rem;
+    letter-spacing: 0.2px;
+    animation: slideUp 0.35s ease both;
+}
+
+.question-lifeline-used-banner strong {
+    color: #4ade80;
+    font-weight: 700;
+}
+
+.question-lifeline-used-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
 .question-confirm-btn {
     background: linear-gradient(180deg, #4ade80 0%, #16a34a 100%);
     color: #0a0a0a;

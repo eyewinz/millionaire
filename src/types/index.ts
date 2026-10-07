@@ -74,6 +74,8 @@ export interface GameState {
   isAnswerRevealed: boolean;
   activeLifeline: LifelineResult | null;
   fiftyFiftyIndices: number[];
+  /** The lifeline used on the current question, or null if none used yet. */
+  lifelineUsedThisQuestion: LifelineType | null;
   questionsAnswered: {
     questionId: string;
     teamIndex: number;
