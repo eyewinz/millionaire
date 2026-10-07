@@ -49,6 +49,7 @@ export type GamePhase =
   | "question"
   | "result"
   | "round-summary"
+  | "round-review"
   | "game-over";
 
 // ——— Lifeline result ———
@@ -90,5 +91,6 @@ export type GameAction =
   | { type: "NEXT_QUESTION" }
   | { type: "USE_LIFELINE"; lifeline: LifelineType }
   | { type: "DISMISS_LIFELINE" }
+  | { type: "SHOW_ROUND_REVIEW" }
   | { type: "CONTINUE_AFTER_ROUND" }
   | { type: "RESET_GAME" };

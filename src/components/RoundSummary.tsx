@@ -10,7 +10,7 @@ const RoundSummary: React.FC = () => {
   const { teams, currentRound } = state;
 
   const handleContinue = () => {
-    dispatch({ type: "CONTINUE_AFTER_ROUND" });
+    dispatch({ type: "SHOW_ROUND_REVIEW" });
   };
 
   return (

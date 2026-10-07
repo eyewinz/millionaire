@@ -2,6 +2,7 @@ import React, {
   createContext,
   useContext,
   useReducer,
+  useEffect,
   type ReactNode,
 } from "react";
 import type {
@@ -14,6 +15,7 @@ import type {
   LifelineResult,
 } from "../types";
 import questionsData from "../data/questions.json";
+import { loadGameState, saveGameState, clearGameState } from "../utils/storage";
 
 // ---------------------------------------------------------------------------
 // Flatten the nested JSON structure into a Question[] array.
@@ -101,6 +103,20 @@ export function calculateRoundScore(
 /** Determine which team should play next (simple alternation). */
 function nextTeamIndex(overallQuestionNumber: number): 0 | 1 {
   return ((overallQuestionNumber - 1) % 2) as 0 | 1;
+}
+
+/**
+ * Return the questions for a round that were never played (neither answered
+ * nor skipped) — i.e. the categories that no team selected that round.
+ */
+export function getUnusedQuestionsForRound(state: GameState): Question[] {
+  const usedQuestionIds = new Set<string>([
+    ...state.questionsAnswered.map((qa) => qa.questionId),
+    ...state.skippedQuestionIds,
+  ]);
+  return questions.filter(
+    (q) => q.round === state.currentRound && !usedQuestionIds.has(q.id),
+  );
 }
 
 /** Pick 2 random incorrect option indices to hide (for 50/50). */
@@ -448,6 +464,11 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       return { ...state, activeLifeline: null };
     }
 
+    // ---- SHOW_ROUND_REVIEW ----
+    case "SHOW_ROUND_REVIEW": {
+      return { ...state, phase: "round-review" };
+    }
+
     // ---- RESET_GAME ----
     case "RESET_GAME": {
       return {
@@ -485,7 +506,19 @@ interface GameProviderProps {
 }
 
 export function GameProvider({ children }: GameProviderProps) {
-  const [state, dispatch] = useReducer(gameReducer, initialState);
+  const [state, dispatch] = useReducer(
+    gameReducer,
+    initialState,
+    // Lazy initializer: restore the saved state (if any) so a page refresh
+    // continues exactly where the player left off.
+    (fallback) => loadGameState() ?? fallback,
+  );
+
+  // Persist the state to storage whenever it changes.
+  useEffect(() => {
+    saveGameState(state);
+  }, [state]);
+
   return (
     <GameContext.Provider value={{ state, dispatch }}>
       {children}
@@ -504,3 +537,6 @@ export function useGame(): GameContextValue {
   }
   return context;
 }
+
+// Re-exported so UI (or the browser console) can wipe the saved state manually.
+export { clearGameState };

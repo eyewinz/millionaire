@@ -1,5 +1,10 @@
 import React from "react";
-import { useGame, calculateRoundScore } from "../context/GameContext";
+import {
+  useGame,
+  calculateRoundScore,
+  ROUND_BASE_POINTS,
+  clearGameState,
+} from "../context/GameContext";
 import type { Team } from "../types";
 
 interface TeamPanelProps {
@@ -72,13 +77,22 @@ const TeamPanel: React.FC<TeamPanelProps> = ({
 };
 
 const GameHeader: React.FC = () => {
-  const { state } = useGame();
+  const { state, dispatch } = useGame();
   const { teams, currentTeamIndex, currentRound } = state;
 
   // Per-team question progress: how many completed + 1 for the current
   const getQuestionNum = (teamIndex: number): number => {
     const answered = teams[teamIndex].roundAnswered;
     return Math.min(answered + 1, 5);
+  };
+
+  const handleQuitAndClear = () => {
+    const confirmed = window.confirm(
+      "Quit the current game and clear saved progress? This cannot be undone.",
+    );
+    if (!confirmed) return;
+    clearGameState();
+    dispatch({ type: "RESET_GAME" });
   };
 
   return (
@@ -98,6 +112,16 @@ const GameHeader: React.FC = () => {
         <span className="header-center-team-progress">
           Question {getQuestionNum(currentTeamIndex)} of 5
         </span>
+        <span className="header-base-points">
+          Base: {ROUND_BASE_POINTS[currentRound]} pts
+        </span>
+        <button
+          className="header-quit-button"
+          onClick={handleQuitAndClear}
+          title="Quit the game and delete saved progress"
+        >
+          Quit & Clear
+        </button>
       </div>
 
       <TeamPanel

@@ -7,6 +7,7 @@ import CategorySelect from "./components/CategorySelect";
 import QuestionScreen from "./components/QuestionScreen";
 import AnswerResult from "./components/AnswerResult";
 import RoundSummary from "./components/RoundSummary";
+import ReviewUnusedQuestions from "./components/ReviewUnusedQuestions";
 import GameOver from "./components/GameOver";
 
 const GameContent: React.FC = () => {
@@ -22,6 +23,7 @@ const GameContent: React.FC = () => {
         {state.phase === "question" && <QuestionScreen />}
         {state.phase === "result" && <AnswerResult />}
         {state.phase === "round-summary" && <RoundSummary />}
+        {state.phase === "round-review" && <ReviewUnusedQuestions />}
         {state.phase === "game-over" && <GameOver />}
       </main>
     </div>
