@@ -12,8 +12,12 @@ const AnswerResult: React.FC = () => {
 
   const question = state.currentQuestion;
   const selectedAnswerIndex = state.selectedAnswerIndex;
+  const timedOut = state.timedOut;
+  // A timeout always counts as wrong, regardless of any selected answer.
   const isCorrect =
-    question !== null && selectedAnswerIndex === question.correctAnswerIndex;
+    !timedOut &&
+    question !== null &&
+    selectedAnswerIndex === question.correctAnswerIndex;
 
   const currentTeam = state.teams[state.currentTeamIndex];
   const roundScore = calculateRoundScore(
@@ -74,20 +78,24 @@ const AnswerResult: React.FC = () => {
       {/* Content overlay */}
       <div className="answer-result-content">
         {/* Big result icon */}
-        <div className="answer-result-icon">{isCorrect ? "🎉" : "😢"}</div>
+        <div className="answer-result-icon">
+          {isCorrect ? "🎉" : timedOut ? "⏰" : "😢"}
+        </div>
 
         {/* Title */}
         <h1
           className={`answer-result-title ${isCorrect ? "answer-result-title--correct" : "answer-result-title--wrong"}`}
         >
-          {isCorrect ? "Correct!" : "Wrong!"}
+          {isCorrect ? "Correct!" : timedOut ? "Time's Up!" : "Wrong!"}
         </h1>
 
         {/* Subtitle */}
         <p className="answer-result-subtitle">
           {isCorrect
             ? "Great job! You nailed it! 🔥"
-            : "Better luck next time!"}
+            : timedOut
+              ? "You ran out of time!"
+              : "Better luck next time!"}
         </p>
 
         {/* Show correct answer if wrong */}

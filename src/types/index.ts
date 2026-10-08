@@ -76,6 +76,10 @@ export interface GameState {
   fiftyFiftyIndices: number[];
   /** The lifeline used on the current question, or null if none used yet. */
   lifelineUsedThisQuestion: LifelineType | null;
+  /** Epoch ms when the current question's timer expires, or null. */
+  questionDeadline: number | null;
+  /** True when the current question was failed by running out of time. */
+  timedOut: boolean;
   questionsAnswered: {
     questionId: string;
     teamIndex: number;
@@ -90,6 +94,7 @@ export type GameAction =
   | { type: "SELECT_CATEGORY"; category: Category }
   | { type: "SELECT_ANSWER"; index: number }
   | { type: "REVEAL_ANSWER" }
+  | { type: "TIME_UP" }
   | { type: "NEXT_QUESTION" }
   | { type: "USE_LIFELINE"; lifeline: LifelineType }
   | { type: "DISMISS_LIFELINE" }

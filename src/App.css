@@ -294,11 +294,108 @@
 }
 
 .header-center {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 12px;
+}
+
+.header-center-text {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2px;
+}
+
+/* -------------------------------------------------------
+   HEADER COUNTDOWN TIMER (animated progress ring)
+   ------------------------------------------------------- */
+
+.header-timer {
+    flex-shrink: 0;
+}
+
+.header-timer-ring {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.25s linear;
+    animation: timerBreathe 2.4s ease-in-out infinite;
+}
+
+.header-timer-inner {
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    background: #0d0d0d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-timer-value {
+    font-size: 1.05rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.5px;
+    color: #f5f5f5;
+    /* Re-mounts every second (keyed on seconds) to replay the beat. */
+    animation: timerBeat 1s ease-out;
+}
+
+.header-timer--warning .header-timer-value {
+    color: #fde68a;
+}
+
+.header-timer--danger .header-timer-ring {
+    animation: timerDangerPulse 0.9s ease-in-out infinite;
+}
+
+.header-timer--danger .header-timer-value {
+    color: #fecaca;
+}
+
+@keyframes timerBeat {
+    0% {
+        transform: scale(1.22);
+        opacity: 0.6;
+    }
+    35% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes timerBreathe {
+    0%,
+    100% {
+        box-shadow: 0 0 6px rgba(74, 222, 128, 0.15);
+    }
+    50% {
+        box-shadow: 0 0 16px rgba(74, 222, 128, 0.3);
+    }
+}
+
+@keyframes timerDangerPulse {
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
+    }
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 22px rgba(248, 113, 113, 0.75);
+    }
 }
 
 .header-round {
@@ -436,7 +533,7 @@
     font-size: 1.6rem;
     font-weight: 700;
     color: #4ade80;
-    margin-bottom: 8px;
+    margin-bottom: 36px;
     text-align: center;
     text-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
 }
@@ -697,6 +794,7 @@
     border-radius: 50px;
     cursor: pointer;
     margin-top: 8px;
+    margin-bottom: 24px;
     transition: all 0.25s ease;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 16px rgba(74, 222, 128, 0.25);
@@ -1420,8 +1518,17 @@
 
     .header-center {
         order: -1;
-        gap: 0;
+        gap: 10px;
         padding-bottom: 2px;
+    }
+
+    .header-timer-ring {
+        width: 48px;
+        height: 48px;
+    }
+
+    .header-timer-value {
+        font-size: 0.72rem;
     }
 
     .header-round {
@@ -1514,7 +1621,7 @@
 
     .category-prompt {
         font-size: 1.2rem;
-        margin-bottom: 4px;
+        margin-bottom: 24px;
     }
 
     .category-grid {

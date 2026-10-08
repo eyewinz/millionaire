@@ -1,2 +1,2 @@
-
 Add questions and answers
+Show timer at the top

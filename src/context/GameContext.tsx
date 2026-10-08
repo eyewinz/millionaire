@@ -100,6 +100,14 @@ export function calculateRoundScore(
   return base * Math.pow(2, correctCount - 1);
 }
 
+/**
+ * Per-question time limit in seconds.
+ * Rounds 1-3: 3 minutes (180s). Rounds 4-5: 5 minutes (300s).
+ */
+export function getQuestionTimeLimitSeconds(round: number): number {
+  return round >= 4 ? 300 : 180;
+}
+
 /** Determine which team should play next (simple alternation). */
 function nextTeamIndex(overallQuestionNumber: number): 0 | 1 {
   return ((overallQuestionNumber - 1) % 2) as 0 | 1;
@@ -193,6 +201,8 @@ const initialState: GameState = {
   activeLifeline: null,
   fiftyFiftyIndices: [],
   lifelineUsedThisQuestion: null,
+  questionDeadline: null,
+  timedOut: false,
   questionsAnswered: [],
   skippedQuestionIds: [],
 };
@@ -243,6 +253,10 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         activeLifeline: null,
         fiftyFiftyIndices: [],
         lifelineUsedThisQuestion: null,
+        questionDeadline:
+          Date.now() +
+          getQuestionTimeLimitSeconds(state.currentRound) * 1000,
+        timedOut: false,
       };
     }
 
@@ -287,6 +301,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         ...state,
         phase: "result",
         isAnswerRevealed: true,
+        questionDeadline: null,
         teams: updatedTeams,
         questionsAnswered: [
           ...state.questionsAnswered,
@@ -294,6 +309,43 @@ function gameReducer(state: GameState, action: GameAction): GameState {
             questionId: state.currentQuestion.id,
             teamIndex: state.currentTeamIndex,
             correct,
+          },
+        ],
+      };
+    }
+
+    // ---- TIME_UP ----
+    // The question timer ran out: mark it wrong and go to the result screen.
+    case "TIME_UP": {
+      if (
+        state.phase !== "question" ||
+        state.isAnswerRevealed ||
+        !state.currentQuestion
+      ) {
+        return state;
+      }
+
+      const updatedTeams: [Team, Team] = [
+        { ...state.teams[0], lifelines: { ...state.teams[0].lifelines } },
+        { ...state.teams[1], lifelines: { ...state.teams[1].lifelines } },
+      ];
+
+      // Counts as an answered-but-wrong question (no score, no roundCorrect).
+      updatedTeams[state.currentTeamIndex].roundAnswered += 1;
+
+      return {
+        ...state,
+        phase: "result",
+        isAnswerRevealed: true,
+        timedOut: true,
+        questionDeadline: null,
+        teams: updatedTeams,
+        questionsAnswered: [
+          ...state.questionsAnswered,
+          {
+            questionId: state.currentQuestion.id,
+            teamIndex: state.currentTeamIndex,
+            correct: false,
           },
         ],
       };
@@ -436,6 +488,8 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           activeLifeline: null,
           fiftyFiftyIndices: [],
           lifelineUsedThisQuestion: null,
+          questionDeadline: null,
+          timedOut: false,
           selectedCategory: null,
         };
       }
