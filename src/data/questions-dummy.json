@@ -348,8 +348,8 @@
   "r5": {
     "Cinema": {
       "id": "r5_cinema",
-      "text": "In the 2016 film Theri, what is the police designation / rank of Vijay's character (Joseph Kuruvilla / Vijay Kumar)?",
-      "options": ["ASP (Assistant Superintendent of Police)", "DCP (Deputy Commissioner of Police)", "ACP (Assistant Commissioner of Police)", "DSP (Deputy Superintendent of Police)"],
+      "text": "Which 1927 film is widely considered the first feature-length motion picture with synchronized dialogue sequences?",
+      "options": ["Metropolis", "Sunrise", "The Jazz Singer", "The General"],
       "correctAnswerIndex": 2
     },
     "Science": {

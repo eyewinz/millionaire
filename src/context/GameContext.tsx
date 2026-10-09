@@ -108,6 +108,29 @@ export function getQuestionTimeLimitSeconds(round: number): number {
   return round >= 4 ? 300 : 180;
 }
 
+/**
+ * Graduated end-of-round penalty, returned as the fraction of the team's
+ * total score to remove.
+ *
+ * No penalty with at least 3 correct answers. Otherwise it scales with the
+ * number of wrong answers in the round:
+ *   - 3 wrong  -> 40% reduction
+ *   - 4 wrong  -> 50% reduction
+ *   - 5 wrong (all answers wrong) -> 60% reduction
+ */
+export function getRoundPenaltyFraction(
+  round: number,
+  correctCount: number,
+  wrongCount: number,
+): number {
+  // Round 1 is a grace round — never penalised.
+  if (round === 1) return 0;
+  if (correctCount >= 3) return 0;
+  if (wrongCount >= 5) return 0.6;
+  if (wrongCount >= 4) return 0.5;
+  return 0.4;
+}
+
 /** Determine which team should play next (simple alternation). */
 function nextTeamIndex(overallQuestionNumber: number): 0 | 1 {
   return ((overallQuestionNumber - 1) % 2) as 0 | 1;
@@ -392,7 +415,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         { ...state.teams[1], lifelines: { ...state.teams[1].lifelines } },
       ];
 
-      // Penalty check: teams with fewer than 3 correct get their score halved
+      // Penalty check: graduated reduction when fewer than 3 correct answers.
       for (let t = 0; t < 2; t++) {
         const teamRoundAnswers = state.questionsAnswered.filter((qa) => {
           if (qa.teamIndex !== t) return false;
@@ -400,10 +423,17 @@ function gameReducer(state: GameState, action: GameAction): GameState {
           return q !== undefined && q.round === state.currentRound;
         });
         const totalCorrect = teamRoundAnswers.filter((qa) => qa.correct).length;
+        const totalWrong = teamRoundAnswers.filter((qa) => !qa.correct).length;
 
-        if (totalCorrect < 3) {
-          // Penalty: halve accumulated score
-          updatedTeams[t].score = Math.floor(updatedTeams[t].score / 2);
+        const penaltyFraction = getRoundPenaltyFraction(
+          state.currentRound,
+          totalCorrect,
+          totalWrong,
+        );
+        if (penaltyFraction > 0) {
+          updatedTeams[t].score = Math.floor(
+            updatedTeams[t].score * (1 - penaltyFraction),
+          );
         }
       }
 

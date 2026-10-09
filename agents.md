@@ -6,7 +6,7 @@ This document describes the project for AI coding agents working on the codebase
 
 ## Project Overview
 
-A two-team quiz game built with React + TypeScript (Create React App). Two teams alternate answering questions across 5 rounds. Each round offers all 12 categories in a shared pool; once a category is picked by either team, it's removed for the rest of that round.
+A two-team quiz game built with React + TypeScript (Create React App). Two teams alternate answering questions across 5 rounds. Each round offers all 12 categories in a shared pool; once a category is picked by either team, it's removed for the rest of that round. Every question is timed, only one lifeline may be used per question, and game state is persisted to `localStorage` so a refresh resumes mid-game.
 
 ---
 
@@ -34,11 +34,13 @@ millionaire/
 │   │   ├── QuestionScreen.tsx
 │   │   ├── AnswerResult.tsx
 │   │   ├── RoundSummary.tsx
+│   │   ├── ReviewUnusedQuestions.tsx
 │   │   └── GameOver.tsx
 │   ├── context/
 │   │   └── GameContext.tsx   # State, reducer, actions, helpers
 │   ├── utils/
-│   │   └── audio.ts         # Web Audio API sound effects (tick, chime, success fanfare, failure sound)
+│   │   ├── audio.ts         # game.wav/success.wav playback + Web Audio API effects
+│   │   └── storage.ts       # localStorage persistence (load/save/clear)
 │   ├── data/
 │   │   └── questions.json   # 60 questions nested as { r1: { Category: Q }, ... }
 │   ├── types/
@@ -60,32 +62,42 @@ millionaire/
 All game state lives in a single `GameState` object managed by `useReducer` in `GameContext.tsx`. The state is provided globally via React Context.
 
 **Key state fields:**
-- `phase` — determines which screen to render (`start`, `category-select`, `question`, `result`, `round-summary`, `game-over`)
+- `phase` — determines which screen to render (`start`, `category-select`, `question`, `result`, `round-summary`, `round-review`, `game-over`)
 - `teams` — tuple of two `Team` objects (scores, lifelines, round stats)
 - `currentTeamIndex` — `0 | 1`, alternates each question
 - `currentRound` — 1 through 5
 - `availableCategories` — shared `Category[]` pool, starts with all 12 each round
 - `currentQuestion` — the active `Question` object (or null)
 - `questionsAnswered` — history of all answered questions with correctness
+- `lifelineUsedThisQuestion` — `LifelineType | null`; which lifeline (if any) was used on the current question (enforces one-per-question)
+- `questionDeadline` — epoch ms when the current question's timer expires (or null); persisted so the countdown survives refresh
+- `timedOut` — `true` when the current question was failed by the timer running out
 
 **Actions (dispatched events):**
 - `START_GAME` — initialise and begin round 1
-- `SELECT_CATEGORY` — team picks a category, a question is loaded
+- `SELECT_CATEGORY` — team picks a category, a question is loaded (sets `questionDeadline`, resets `timedOut`/`lifelineUsedThisQuestion`)
 - `SELECT_ANSWER` — team selects an option (before confirming)
 - `REVEAL_ANSWER` — lock in answer, update scores (only dispatched after user confirms via the confirmation modal)
+- `TIME_UP` — timer expired: mark the question wrong and go to the result screen
 - `NEXT_QUESTION` — advance to next team/question or end round
-- `USE_LIFELINE` — activate a lifeline (phone, fifty, mystery, lastChance)
+- `USE_LIFELINE` — activate a lifeline (phone, fifty, mystery, lastChance); blocked if one was already used this question
 - `DISMISS_LIFELINE` — close the lifeline overlay
-- `CONTINUE_AFTER_ROUND` — apply penalties, advance to next round or end game
+- `SHOW_ROUND_REVIEW` — move from `round-summary` to the `round-review` screen
+- `CONTINUE_AFTER_ROUND` — apply graduated penalties, advance to next round or end game
 - `RESET_GAME` — return to initial state
+
+### Persistence
+
+Game state is saved to `localStorage` via `src/utils/storage.ts` (`loadGameState`, `saveGameState`, `clearGameState`; key `millionaire-game-state`). `GameProvider` lazy-initializes the reducer from the saved state and a `useEffect` saves on every state change. The save is only wiped manually via **Clear Saved Game** (StartScreen) or **Quit & Clear** (GameHeader), both of which call `clearGameState()` + dispatch `RESET_GAME`. `clearGameState` is re-exported from `GameContext.tsx`.
 
 ### Audio
 
-Audio is managed via a utility module `src/utils/audio.ts` using the Web Audio API. It uses a lazy-initialized singleton `AudioContext`. Sound effects include:
-- **Ticking clock** — plays on the question screen while the timer counts down
-- **Confirmation chime** — plays when the confirmation modal appears
-- **Success fanfare** — plays on the answer result screen for correct answers
-- **Failure sound** — plays on the answer result screen for wrong answers
+Audio is managed via a utility module `src/utils/audio.ts`. It mixes pre-recorded WAV files (served from `public/`) with a few synthesized Web Audio API effects (lazy-initialized singleton `AudioContext`). Sounds include:
+- **Background music** (`game.wav`) — loops on the question screen via `startGameMusic()` at a low volume (`0.05`); stopped with `stopGameMusic()`
+- **Success sound** (`success.wav`) — played by `playSuccessSound()` on a correct answer (volume `0.7`)
+- **Confirmation chime** — synth two-note chime (`playConfirmPopup`) when the confirmation modal appears
+- **Failure tone** — synth descending sawtooth (`playFailure`) on a wrong answer; **a timeout is treated as a wrong answer, so it triggers the same failure flow/sound**
+- The legacy synth `playTick`/`startTicking`/`playSuccess` helpers remain in the file for reference but are no longer the primary effects.
 
 ### Component Rendering by Phase
 
@@ -96,13 +108,14 @@ Audio is managed via a utility module `src/utils/audio.ts` using the Web Audio A
 | `question` | `GameHeader` + `QuestionScreen` |
 | `result` | `AnswerResult` (full-screen — `GameHeader` is hidden) |
 | `round-summary` | `GameHeader` + `RoundSummary` |
+| `round-review` | `GameHeader` + `ReviewUnusedQuestions` |
 | `game-over` | `GameOver` |
 
 > **Note:** `QuestionScreen` manages a local `showConfirmModal` boolean state via `useState` for the answer confirmation flow. This is a **UI-only** concern — no reducer actions or global state changes were needed. The flow is:
 > 1. `SELECT_ANSWER` dispatch → answer option highlights
-> 2. User clicks "Final Answer" → ticking stops, confirmation chime plays, `setShowConfirmModal(true)` (modal appears)
+> 2. User clicks "Final Answer" → background music stops, confirmation chime plays, `setShowConfirmModal(true)` (modal appears)
 > 3. User clicks **Confirm** → `setShowConfirmModal(false)` + `REVEAL_ANSWER` dispatch → phase becomes `result`
-> 4. User clicks **Go Back** → `setShowConfirmModal(false)`, ticking resumes
+> 4. User clicks **Go Back** → `setShowConfirmModal(false)`, background music resumes
 > 5. `result` phase renders `AnswerResult` component with full-screen success/failure animation + sounds
 > 6. User clicks **Continue** → `NEXT_QUESTION` dispatch → back to `category-select` or `round-summary`
 
@@ -112,7 +125,24 @@ Exponential doubling per round:
 - Formula: `basePoints × 2^(correctCount - 1)`
 - Base points: R1=25, R2=50, R3=100, R4=200, R5=500
 - Score is awarded incrementally after each correct answer
-- Penalty: if a team gets < 3 correct in a round, their **total score is halved**
+- **Graduated round penalty** (computed by `getRoundPenaltyFraction(round, correctCount, wrongCount)` and applied in `CONTINUE_AFTER_ROUND` as `score × (1 - fraction)`):
+  - **Round 1** → always `0` (grace round — no penalty ever)
+  - **≥ 3 correct** → no penalty (`0`)
+  - **3 wrong** → **-40%** (`0.4`)
+  - **4 wrong** → **-50%** (`0.5`)
+  - **5 wrong** (whole round) → **-60%** (`0.6`)
+
+### Question Timer
+
+Every question is timed. `getQuestionTimeLimitSeconds(round)` returns **180s** (3 min) for rounds 1-3 and **300s** (5 min) for rounds 4-5. On `SELECT_CATEGORY` the reducer stamps `questionDeadline = Date.now() + limit*1000` (persisted, so the countdown survives a refresh). `GameHeader` owns the ticking interval and dispatches `TIME_UP` when the deadline passes, which marks the question wrong (`timedOut = true`) and routes to the `result` screen; `AnswerResult` renders a "Time's Up!" failure when `timedOut` is set.
+
+### Helper Functions (GameContext.tsx)
+
+- `calculateRoundScore(round, correctCount)` — exponential doubling score for a round
+- `getRoundPenaltyFraction(round, correctCount, wrongCount)` — graduated penalty fraction (0 / 0.4 / 0.5 / 0.6); always returns `0` for round 1 (grace round)
+- `getQuestionTimeLimitSeconds(round)` — per-question time limit in seconds (180 or 300)
+- `getUnusedQuestionsForRound(round, questionsAnswered)` — questions in a round not yet answered/used, shown on the `round-review` screen
+- `clearGameState()` — re-exported from `storage.ts`; wipes the saved game in `localStorage`
 
 ### Category Pool Mechanic
 
@@ -177,7 +207,7 @@ The `round` and `category` fields are NOT stored on the question object — they
 
 ### Working with audio
 
-Audio functions are defined in `src/utils/audio.ts` and are imported/called from components directly. To add a new sound effect, add a function to `audio.ts` that synthesizes the sound using `AudioContext` oscillators and gain nodes, then import and call it from the relevant component.
+Audio functions are defined in `src/utils/audio.ts` and are imported/called from components directly. Pre-recorded clips (e.g. `game.wav`, `success.wav`) live in `public/` and are played via `new Audio(process.env.PUBLIC_URL + "/file.wav")`; short synthesized effects are generated with `AudioContext` oscillators and gain nodes. To add a new sound, add a function to `audio.ts` and import/call it from the relevant component.
 
 ### Adding a new game phase
 
@@ -205,6 +235,9 @@ npx tsc --noEmit     # type-check without emitting
 - The round/category on each runtime `Question` object is derived from the JSON keys — don't add `round` or `category` fields to the JSON question objects.
 - The `round` key on questions is a preference hint, not a strict filter. The fallback ensures every category always has a question available regardless of which round it is.
 - `team.roundCorrect` only tracks correct answers; `team.roundAnswered` tracks all answers (correct + wrong) in the current round.
-- The penalty check happens in `CONTINUE_AFTER_ROUND`, not immediately when the 3rd wrong answer occurs.
+- The **graduated penalty** is applied in `CONTINUE_AFTER_ROUND`, not immediately when a wrong answer occurs. **Round 1 is always penalty-free**; from round 2 on, the wrong count is derived as `roundAnswered - roundCorrect` (so timeouts count as wrong), and `getRoundPenaltyFraction` returns `0` when `roundCorrect >= 3`.
+- A question timeout is a wrong answer: `TIME_UP` sets `timedOut` and sends the player to the failure result screen.
+- `questionDeadline` is stored in state (and persisted), so the per-question countdown keeps running correctly across a page refresh.
+- **Only one lifeline may be used per question** — `lifelineUsedThisQuestion` guards the `USE_LIFELINE` reducer case and the UI disables the other lifelines once one is used.
 - Lifelines are per-team and persist across rounds (they don't reset).
 - `Last Chance` lifeline has special unlock rules: only available from Round 4+, and only after all other 3 lifelines are used.

@@ -35,11 +35,20 @@ const StartScreen: React.FC = () => {
           </li>
           <li>
             Each team has 4 lifelines: Phone a Friend, 50/50, Mystery Box, and
-            Last Chance. Last chance is only for 4 & 5 round.
+            Last Chance. Only one lifeline may be used per question, and Last
+            Chance is available in rounds 4 &amp; 5 only.
           </li>
           <li>
-            Answer at least 3 out of 5 correctly each round to avoid the penalty
-            — otherwise your total score gets cut in half!
+            Every question is timed: <strong>3 minutes</strong> in rounds 1-3
+            and <strong>5 minutes</strong> in rounds 4-5. If the timer runs
+            out, the question is marked wrong automatically.
+          </li>
+          <li>
+            <strong>Round 1 is a grace round — no penalty, ever.</strong> From
+            round 2 onward, answer at least 3 out of 5 correctly each round to
+            avoid a penalty. Otherwise your total score is reduced gradually:{" "}
+            <strong>-40%</strong> for 3 wrong, <strong>-50%</strong> for 4
+            wrong, and <strong>-60%</strong> if all 5 are wrong.
           </li>
           <li>
             Points double with each correct answer in a round — earn up to 8,000

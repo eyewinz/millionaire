@@ -3,6 +3,7 @@ import {
   useGame,
   ROUND_BASE_POINTS,
   calculateRoundScore,
+  getRoundPenaltyFraction,
 } from "../context/GameContext";
 
 const RoundSummary: React.FC = () => {
@@ -22,6 +23,12 @@ const RoundSummary: React.FC = () => {
       <div className="summary-cards">
         {teams.map((team, index) => {
           const passed = team.roundCorrect >= 3;
+          const roundWrong = team.roundAnswered - team.roundCorrect;
+          const penaltyFraction = getRoundPenaltyFraction(
+            currentRound,
+            team.roundCorrect,
+            roundWrong,
+          );
 
           const cardClass = `summary-card ${
             passed ? "summary-card--pass" : "summary-card--fail"
@@ -54,10 +61,16 @@ const RoundSummary: React.FC = () => {
                 </p>
               )}
               <p className="summary-stat">
-                {passed ? "✅ No penalty" : "⚠️ Penalty: Total score halved!"}
+                {penaltyFraction === 0
+                  ? "✅ No penalty"
+                  : `⚠️ Penalty: -${Math.round(
+                      penaltyFraction * 100,
+                    )}% total score`}
               </p>
               <p className="summary-threshold">
-                Need at least 3 correct to avoid penalty
+                {currentRound === 1
+                  ? "Round 1 is a grace round — no penalty"
+                  : "Need at least 3 correct to avoid penalty"}
               </p>
             </div>
           );

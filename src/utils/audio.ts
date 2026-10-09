@@ -19,7 +19,7 @@ export function startGameMusic(): void {
   stopGameMusic();
   gameAudio = new Audio(process.env.PUBLIC_URL + "/game.wav");
   gameAudio.loop = true;
-  gameAudio.volume = 0.1;
+  gameAudio.volume = 0.05;
   gameAudio.play().catch(() => {
     // Browser may block autoplay; ignore silently
   });

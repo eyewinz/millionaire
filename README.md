@@ -6,7 +6,7 @@ A responsive React web application themed after *Who Wants to Be a Millionaire?*
 
 ## 📸 Overview
 
-Two teams compete head-to-head across **5 rounds of 5 questions each** — **25 questions per team** (50 total). Every round, both teams choose from a **shared pool of all 12 knowledge categories**. Once a category is picked by either team, it's removed from the pool for the rest of that round. After answering, a **full-screen Answer Result Screen** shows success or failure with animations before continuing. Each team has **4 lifelines** to use strategically. Points double with each correct answer, and teams must answer at least 3 out of 5 correctly each round to avoid a score penalty!
+Two teams compete head-to-head across **5 rounds of 5 questions each** — **25 questions per team** (50 total). Every round, both teams choose from a **shared pool of all 12 knowledge categories**. Once a category is picked by either team, it's removed from the pool for the rest of that round. Every question is **timed** (3 minutes in rounds 1–3, 5 minutes in rounds 4–5), and only **one lifeline may be used per question**. After answering, a **full-screen Answer Result Screen** shows success or failure with animations before continuing. Each team has **4 lifelines** to use strategically. Points double with each correct answer, and from **round 2 onward** teams face a **graduated score penalty** if they answer fewer than 3 of 5 correctly in a round (**round 1 is a penalty-free grace round**). Game progress is **automatically saved** to the browser, so a refresh resumes exactly where you left off.
 
 ---
 
@@ -71,14 +71,45 @@ When a question is displayed, the answer flow follows a deliberate multi-step co
 
 This prevents accidental answer submissions and adds dramatic tension — just like the TV show!
 
+### Round Review (Unplayed Categories)
+
+After the round summary, an intermediate **Round Review** screen lists the categories that **no team picked that round**, each with its question and the highlighted correct answer. This lets players see what they missed before the next round begins. Clicking **Continue** here applies the end-of-round penalty and advances to the next round (or the final results).
+
+### Question Timer
+
+Every question is on a countdown timer, shown in the header as two animated progress rings that flank the center heading:
+
+- **Rounds 1–3:** 3 minutes per question.
+- **Rounds 4–5:** 5 minutes per question.
+
+The ring drains as time elapses and shifts colour from green → amber (under 60s) → red (under 30s), pulsing urgently in the final seconds. If the timer reaches **0:00**, the question is **automatically marked wrong** and the game jumps straight to the "Time's Up!" failure screen — even if the correct option was highlighted but never confirmed. Because the deadline is stored in game state, the countdown survives a page refresh and resumes with the correct remaining time.
+
 ### Penalty System
 
 After each round, both teams are evaluated:
 
 - Each team answers exactly **5 questions per round**.
-- If a team answers **fewer than 3 correctly**, their **total accumulated score is halved** as a penalty.
+- **Round 1 is a grace round — no penalty is ever applied, regardless of how many questions a team gets wrong.**
+- From **Round 2 onward**, answering **at least 3 correctly** means **no penalty**.
+- Otherwise, a **graduated penalty** reduces the team's **total accumulated score** based on the number of wrong answers in that round:
+
+| Round | Wrong Answers | Correct Answers | Penalty |
+|-------|---------------|-----------------|---------|
+| 1 | any | any | **None (grace round)** |
+| 2–5 | 0–2 | 3–5 | None |
+| 2–5 | 3 | 2 | **−40%** of total score |
+| 2–5 | 4 | 1 | **−50%** of total score |
+| 2–5 | 5 (all wrong) | 0 | **−60%** of total score |
+
 - There is **no elimination** — both teams always play all 5 rounds.
 - This creates a strategic incentive to answer carefully: a penalty in an early round compounds over time!
+
+### Saving & Resuming
+
+Game state is **persisted to the browser's `localStorage`** after every change (there is no backend/server file — `localStorage` acts as the "state file"):
+
+- Refreshing the page, or even closing and reopening the browser, **resumes the game exactly where you left off** (round, scores, lifelines, current question, and remaining time).
+- The saved game is **never cleared automatically**. To wipe it, use **"Clear Saved Game"** on the Start screen (shown only when a save exists) or **"Quit & Clear"** in the in-game header.
 
 ### Scoring System
 
@@ -126,13 +157,17 @@ Each team's panel displays:
 | Element | Description |
 |---------|-------------|
 | **Round Number** | Current round (e.g. "Round 3") |
-| **Question Progress** | Shows the active team's progress (e.g. "Team A: 2 of 5") |
+| **Turn Label** | Whose turn it is (e.g. "Team A's Turn") |
+| **Question Progress** | The active team's progress (e.g. "Question 2 of 5") |
+| **Base Points** | The base point value for the current round |
+| **Countdown Timers** | Two animated progress rings flanking the heading, showing the question's remaining time (colour-coded, pulsing when low) |
+| **Quit & Clear** | Button to abandon the current game and delete the saved progress (returns to the Start screen) |
 
 ---
 
 ## 🆘 Lifelines
 
-Each team has **4 lifelines**, each usable **once** during their turn (before locking in an answer):
+Each team has **4 lifelines**. **Only one lifeline may be used per question** — once a lifeline is used, the others are disabled until the next question. A confirmation banner ("You have successfully used the … lifeline") appears below the options for that question.
 
 | Lifeline | Emoji | Availability | Effect |
 |----------|-------|-------------|--------|
@@ -153,16 +188,16 @@ The Last Chance lifeline has special unlock conditions:
 
 ## 🔊 Sound Effects
 
-The game features dynamic sound effects generated entirely in the browser — no external audio files needed. All sounds are synthesized programmatically using the **Web Audio API**.
+The game combines **two audio files** (in `public/`) with **programmatically synthesized** sounds (Web Audio API).
 
-| Sound | Trigger | Description |
-|-------|---------|-------------|
-| **Ticking Clock** | Question screen | A clock-like tick plays every second during the question screen, building tension until the answer is submitted. |
-| **Confirmation Chime** | Final Answer modal | A short ascending chime plays when the "Final Answer" confirmation modal appears. |
-| **Success Fanfare** | Answer Result (correct) | A triumphant ascending arpeggio plays on the answer result screen when the answer is correct. |
-| **Failure Sound** | Answer Result (wrong) | A descending tone plays on the answer result screen when the answer is wrong. |
+| Sound | Source | Trigger | Description |
+|-------|--------|---------|-------------|
+| **Question Music** | `public/game.wav` | Question screen | Loops very quietly (volume ~0.05) while a question is displayed; stops when the answer is locked in. |
+| **Success** | `public/success.wav` | Answer Result (correct) | Plays when the answer is correct. |
+| **Confirmation Chime** | Web Audio API | Final Answer modal | A short ascending chime when the "Final Answer" confirmation modal appears. |
+| **Failure Sound** | Web Audio API | Answer Result (wrong / timeout) | A descending tone when the answer is wrong or the timer runs out. |
 
-> **Note:** All sounds are generated programmatically using the Web Audio API — no external audio files needed.
+> **Note:** `game.wav` and `success.wav` live in `public/` and are played via HTML `Audio` elements. The confirmation chime and failure sound are still synthesized at runtime via the Web Audio API. (A legacy synthesized ticking clock and success fanfare remain in `audio.ts` but are no longer used on the question/result screens.)
 
 ---
 
@@ -203,22 +238,24 @@ This creates an optimized build in the `build/` folder.
 
 ```/dev/null/tree.txt#L1-20
 millionaire/
-├── public/                  # Static assets
+├── public/                  # Static assets (incl. game.wav, success.wav)
 ├── src/
 │   ├── components/          # React UI components
-│   │   ├── StartScreen.tsx      # Welcome screen with rules
-│   │   ├── GameHeader.tsx       # Persistent header bar (team panels + center HUD)
+│   │   ├── StartScreen.tsx      # Welcome screen with rules + Clear Saved Game
+│   │   ├── GameHeader.tsx       # Persistent header bar (team panels + center HUD + timer rings + Quit & Clear)
 │   │   ├── CategorySelect.tsx   # Shared category picker for the active team
-│   │   ├── QuestionScreen.tsx   # Question display, options, lifelines
-│   │   ├── AnswerResult.tsx     # Full-screen answer feedback (success/failure animation)
-│   │   ├── RoundSummary.tsx     # End-of-round results with scoring
+│   │   ├── QuestionScreen.tsx   # Question display, options, lifelines, used-banner
+│   │   ├── AnswerResult.tsx     # Full-screen answer feedback (success/failure/timeout animation)
+│   │   ├── RoundSummary.tsx     # End-of-round results with graduated penalty
+│   │   ├── ReviewUnusedQuestions.tsx # Post-round review of unplayed categories & answers
 │   │   └── GameOver.tsx         # Final results and winner
 │   ├── context/
-│   │   └── GameContext.tsx      # Game state management (useReducer + Context)
+│   │   └── GameContext.tsx      # Game state management (useReducer + Context) + helpers
 │   ├── data/
 │   │   └── questions.json       # Question bank (editable!)
 │   ├── utils/
-│   │   └── audio.ts             # Web Audio API sound effects (tick, chimes, fanfare)
+│   │   ├── audio.ts             # game.wav/success.wav playback + Web Audio API effects
+│   │   └── storage.ts           # localStorage persistence (load/save/clear game state)
 │   ├── types/
 │   │   └── index.ts             # TypeScript interfaces & types
 │   ├── App.tsx                  # Root component
@@ -321,7 +358,8 @@ Every round contains **1 question for each of the 12 categories**:
 | **TypeScript** | Type safety across all components and state logic |
 | **React Context + useReducer** | Global state management |
 | **CSS3** | Custom styling with animations (including confetti & emoji rain), gradients, and responsive design |
-| **Web Audio API** | Programmatic sound effects (ticking clock, chimes, fanfare) — no external audio files |
+| **Web Audio API** | Programmatic sound effects (confirmation chime, failure tone); `game.wav` and `success.wav` are played via HTML `Audio` elements |
+| **localStorage** | Automatic game-state persistence (save/resume, clear) |
 | **Create React App** | Project scaffolding and build tooling |
 
 ---
