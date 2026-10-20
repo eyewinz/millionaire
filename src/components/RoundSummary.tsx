@@ -34,6 +34,10 @@ const RoundSummary: React.FC = () => {
             passed ? "summary-card--pass" : "summary-card--fail"
           }`;
 
+          const scoreAfterPenalty = Math.floor(
+            team.score * (1 - penaltyFraction),
+          );
+
           return (
             <div key={index} className={cardClass}>
               <h2>{team.name}</h2>
@@ -67,6 +71,14 @@ const RoundSummary: React.FC = () => {
                       penaltyFraction * 100,
                     )}% total score`}
               </p>
+              <p className="summary-stat">
+                Total Score: <strong>{team.score}</strong> pts
+              </p>
+              {penaltyFraction > 0 && (
+                <p className="summary-stat summary-after-penalty">
+                  After Penalty: <strong>{scoreAfterPenalty}</strong> pts
+                </p>
+              )}
               <p className="summary-threshold">
                 {currentRound === 1
                   ? "Round 1 is a grace round — no penalty"

@@ -2,13 +2,8 @@
   "r1": {
     "Cinema": {
       "id": "r1_cinema",
-      "text": "Who directed the 1994 film 'The Shawshank Redemption'?",
-      "options": [
-        "Steven Spielberg",
-        "Frank Darabont",
-        "Martin Scorsese",
-        "Quentin Tarantino"
-      ],
+      "text": "Which star is popularly known as \"Thalaivar\" in Tamil cinema?",
+      "options": ["Kamal Haasan", "Rajinikanth", "Vijay", "Ajith Kumar"],
       "correctAnswerIndex": 1
     },
     "Science": {
@@ -86,9 +81,14 @@
   "r2": {
     "Cinema": {
       "id": "r2_cinema",
-      "text": "Which film won the first-ever Academy Award for Best Picture in 1929?",
-      "options": ["Wings", "Sunrise", "The Jazz Singer", "Ben-Hur"],
-      "correctAnswerIndex": 0
+      "text": "Before becoming a pan-Indian phenomenon and National Award-winning star under the name Dhanush, what was the actor given at birth?",
+      "options": [
+        "Kasthuri Raja",
+        "Prabhu Deva",
+        "Selvaraghavan",
+        "Venkatesh Prabhu"
+      ],
+      "correctAnswerIndex": 3
     },
     "Science": {
       "id": "r2_science",
@@ -98,8 +98,8 @@
     },
     "Maths": {
       "id": "r2_maths",
-      "text": "What is the square root of 144?",
-      "options": ["10", "11", "12", "14"],
+      "text": "What is the proper geometric name for a polygon with 11 sides?",
+      "options": ["Decagon", "UnoDecagon", "Hendecagon", "Dodecagon"],
       "correctAnswerIndex": 2
     },
     "Language": {
@@ -160,14 +160,9 @@
   "r3": {
     "Cinema": {
       "id": "r3_cinema",
-      "text": "Which 1972 film won eight Academy Awards but lost Best Picture to 'The Godfather'?",
-      "options": [
-        "Deliverance",
-        "Cabaret",
-        "The Poseidon Adventure",
-        "Sounder"
-      ],
-      "correctAnswerIndex": 1
+      "text": "Which Tamil movie won the National Film Award for Best Feature Film in Tamil for the year 1999 and was directed by Bala?",
+      "options": ["Sethu", "Nandha", "Pithamagan", "Kasi"],
+      "correctAnswerIndex": 0
     },
     "Science": {
       "id": "r3_science",
@@ -254,14 +249,14 @@
   "r4": {
     "Cinema": {
       "id": "r4_cinema",
-      "text": "Which director has won the most Academy Awards for Best Director?",
+      "text": "In Gautham Vasudev Menon’s classic semi-autobiographical hit Vaaranam Aayiram (2008), Suriya played a dual father-son role. What were the names of those two characters?",
       "options": [
-        "Steven Spielberg",
-        "John Ford",
-        "William Wyler",
-        "Frank Capra"
+        "Kannan and Chandran",
+        "Michael and Rayappan",
+        "Sanjay and Deva",
+        "Krishnan and Surya"
       ],
-      "correctAnswerIndex": 1
+      "correctAnswerIndex": 3
     },
     "Science": {
       "id": "r4_science",
@@ -349,8 +344,13 @@
     "Cinema": {
       "id": "r5_cinema",
       "text": "In the 2016 film Theri, what is the police designation / rank of Vijay's character (Joseph Kuruvilla / Vijay Kumar)?",
-      "options": ["ASP (Assistant Superintendent of Police)", "DCP (Deputy Commissioner of Police)", "ACP (Assistant Commissioner of Police)", "DSP (Deputy Superintendent of Police)"],
-      "correctAnswerIndex": 2
+      "options": [
+        "ASP (Assistant Superintendent of Police)",
+        "DCP (Deputy Commissioner of Police)",
+        "ACP (Assistant Commissioner of Police)",
+        "DSP (Deputy Superintendent of Police)"
+      ],
+      "correctAnswerIndex": 1
     },
     "Science": {
       "id": "r5_science",

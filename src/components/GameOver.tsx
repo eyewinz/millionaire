@@ -56,7 +56,7 @@ const GameOver: React.FC = () => {
                 {team.name}
               </h3>
               <p className="gameover-score">
-                <strong>{team.score}</strong> pts
+                <strong>{isWinner?team.score:team.score/2}</strong> pts
               </p>
             </div>
           );

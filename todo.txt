@@ -1,2 +1,2 @@
 Add questions and answers
-Show timer at the top
+in 4 & 5, using last chance, if picked and not answered, that still needs to be shown in the review screen
