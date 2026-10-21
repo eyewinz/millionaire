@@ -31,15 +31,20 @@
     },
     "Politics": {
       "id": "r1_politics",
-      "text": "In which city is the headquarters of the United Nations located?",
-      "options": ["Geneva", "Washington D.C.", "Brussels", "New York City"],
+      "text": "Which political party was founded by the popular actor-turned-politician M. G. Ramachandran (MGR) in 1972 after his split from the DMK?",
+      "options": [
+        "Desiya Murpokku Dravida Kazhagam (DMDK)",
+        "Pattali Makkal Katchi (PMK)",
+        "Marumalarchi Dravida Munnetra Kazhagam (MDMK)",
+        "All India Anna Dravida Munnetra Kazhagam (AIADMK)"
+      ],
       "correctAnswerIndex": 3
     },
     "Puzzle": {
       "id": "r1_puzzle",
-      "text": "How many squares are on a standard chessboard?",
-      "options": ["32", "48", "64", "100"],
-      "correctAnswerIndex": 2
+      "text": "I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. What am I?",
+      "options": ["A dream", "A map", "A globe", "A painting"],
+      "correctAnswerIndex": 1
     },
     "Sports": {
       "id": "r1_sports",
@@ -115,14 +120,19 @@
     },
     "Politics": {
       "id": "r2_politics",
-      "text": "How many permanent members are on the United Nations Security Council?",
-      "options": ["3", "5", "7", "10"],
+      "text": "Who was the first woman to serve as the President of India?",
+      "options": [
+        "Indira Gandhi",
+        "Pratibha Patil",
+        "Sarojini Naidu",
+        "Droupadi Murmu"
+      ],
       "correctAnswerIndex": 1
     },
     "Puzzle": {
       "id": "r2_puzzle",
-      "text": "What number do you get if you multiply all the digits on a telephone number pad (0–9) together?",
-      "options": ["362880", "3628800", "0", "1"],
+      "text": "The person who makes it has no need of it. The person who buys it has no use for it. The person who uses it can neither see nor feel it. What is it?",
+      "options": ["A parachute", "Life insurance", "A coffin", "A lie"],
       "correctAnswerIndex": 2
     },
     "Sports": {
@@ -194,14 +204,14 @@
     },
     "Politics": {
       "id": "r3_politics",
-      "text": "Which country has the oldest written national constitution still in use?",
-      "options": ["United States", "United Kingdom", "France", "Switzerland"],
-      "correctAnswerIndex": 0
+      "text": "In which city is the headquarters of the United Nations located?",
+      "options": ["Geneva", "Washington D.C.", "Brussels", "New York City"],
+      "correctAnswerIndex": 3
     },
     "Puzzle": {
       "id": "r3_puzzle",
-      "text": "What comes next in the sequence: 2, 6, 18, 54, ...?",
-      "options": ["108", "162", "148", "216"],
+      "text": "You measure my life in hours and I serve you by expiring. I'm quick when I'm thin and slow when I'm fat. The wind is my enemy. What am I?",
+      "options": ["A cigarette", "A candle", "An hourglass", "A campfire"],
       "correctAnswerIndex": 1
     },
     "Sports": {
@@ -288,14 +298,19 @@
     },
     "Politics": {
       "id": "r4_politics",
-      "text": "Which country's parliament is called the Knesset?",
-      "options": ["Turkey", "Israel", "Iran", "Egypt"],
+      "text": "In Indian politics, what is the minimum age required to become the Prime Minister of India (assuming the candidate is a member of the Lok Sabha)?",
+      "options": ["21 years", "25 years", "30 years", "35 years"],
       "correctAnswerIndex": 1
     },
     "Puzzle": {
       "id": "r4_puzzle",
-      "text": "In the Monty Hall problem, if you initially pick a door and the host reveals a goat behind another door, what is your probability of winning the car if you switch?",
-      "options": ["1/2", "1/3", "2/3", "3/4"],
+      "text": "There are three doors you can choose to escape a trap. Door A leads to a blazing inferno. Door B leads to a trained assassin. Door C leads to a lion that hasn't eaten in three years. Which door is the safest?",
+      "options": [
+        "Door A",
+        "Door B",
+        "Door C",
+        "None, they are all equally fatal"
+      ],
       "correctAnswerIndex": 2
     },
     "Sports": {
@@ -387,20 +402,15 @@
     },
     "Politics": {
       "id": "r5_politics",
-      "text": "Which 1648 treaty is widely considered to have established the principle of state sovereignty in international law?",
-      "options": [
-        "Treaty of Versailles",
-        "Peace of Westphalia",
-        "Treaty of Utrecht",
-        "Congress of Vienna"
-      ],
-      "correctAnswerIndex": 1
+      "text": "In which Indian state was Article 356 (President's Rule) imposed for the very first time in 1951?",
+      "options": ["Manipur", "Uttar Pradesh", "Punjab", "Jammu and Kashmir"],
+      "correctAnswerIndex": 2
     },
     "Puzzle": {
       "id": "r5_puzzle",
-      "text": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?",
-      "options": ["$0.10", "$0.05", "$0.15", "$0.01"],
-      "correctAnswerIndex": 1
+      "text": "A man is looking at a photograph. He says, 'Brothers and sisters, I have none. But that man's father is my father's son.' Who is in the photograph?",
+      "options": ["His father", "Himself", "His son", "His grandfather"],
+      "correctAnswerIndex": 2
     },
     "Sports": {
       "id": "r5_sports",
