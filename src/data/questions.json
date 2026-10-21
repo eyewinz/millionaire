@@ -14,15 +14,20 @@
     },
     "Maths": {
       "id": "r1_maths",
-      "text": "What is the value of pi rounded to two decimal places?",
-      "options": ["3.41", "3.17", "3.12", "3.14"],
-      "correctAnswerIndex": 3
+      "text": "If a triangle has three equal sides, what is it called?",
+      "options": ["Scalene", "Isosceles", "Equilateral", "Right-angled"],
+      "correctAnswerIndex": 2
     },
     "Language": {
       "id": "r1_language",
-      "text": "What do you call a word that reads the same forwards and backwards?",
-      "options": ["Anagram", "Homonym", "Palindrome", "Acronym"],
-      "correctAnswerIndex": 2
+      "text": "Which famous Tamil poet wrote the 'Aathichoodi'?",
+      "options": [
+        "Andal",
+        "Avvaiyar",
+        "Karaikkal Ammaiyar",
+        "Kakkai Padiniyar"
+      ],
+      "correctAnswerIndex": 1
     },
     "Politics": {
       "id": "r1_politics",
@@ -98,14 +103,14 @@
     },
     "Maths": {
       "id": "r2_maths",
-      "text": "What is the proper geometric name for a polygon with 11 sides?",
-      "options": ["Decagon", "UnoDecagon", "Hendecagon", "Dodecagon"],
-      "correctAnswerIndex": 2
+      "text": "What is the proper geometric name for a polygon with 7 sides?",
+      "options": ["Hexagon", "Heptagon", "Octagon", "Septagon"],
+      "correctAnswerIndex": 1
     },
     "Language": {
       "id": "r2_language",
-      "text": "Which alphabet is used for writing Russian?",
-      "options": ["Latin", "Greek", "Cyrillic", "Arabic"],
+      "text": "What is the earliest known and surviving work on Tamil grammar and poetics?",
+      "options": ["Agattiyam", "Nannūl", "Tolkappiyam", "Ettuthokai"],
       "correctAnswerIndex": 2
     },
     "Politics": {
@@ -172,15 +177,20 @@
     },
     "Maths": {
       "id": "r3_maths",
-      "text": "What is the value of 2 raised to the power of 10?",
-      "options": ["512", "1024", "2048", "4096"],
-      "correctAnswerIndex": 1
+      "text": "How many degrees are in a full circle?",
+      "options": ["90°", "180°", "270°", "360°"],
+      "correctAnswerIndex": 3
     },
     "Language": {
       "id": "r3_language",
-      "text": "Which language family does Finnish belong to?",
-      "options": ["Indo-European", "Uralic", "Altaic", "Sino-Tibetan"],
-      "correctAnswerIndex": 1
+      "text": "Which script is primarily used to write the Hindi language?",
+      "options": [
+        "Kharosthi script",
+        "Brahmi script",
+        "Devanagari script",
+        "Dravidian script"
+      ],
+      "correctAnswerIndex": 2
     },
     "Politics": {
       "id": "r3_politics",
@@ -260,26 +270,21 @@
     },
     "Science": {
       "id": "r4_science",
-      "text": "The Chandrasekhar limit, the maximum mass of a stable white dwarf star, is approximately equal to what?",
-      "options": [
-        "0.5 solar masses",
-        "1.4 solar masses",
-        "3.0 solar masses",
-        "10 solar masses"
-      ],
-      "correctAnswerIndex": 1
+      "text": "Which large internal organ performs hundreds of vital functions, including detoxifying various metabolites, synthesizing proteins, and producing biochemicals necessary for digestion?",
+      "options": ["Stomach", "Pancreas", "Spleen", "Liver"],
+      "correctAnswerIndex": 3
     },
     "Maths": {
       "id": "r4_maths",
-      "text": "What is the sum of all interior angles of a dodecagon (12-sided polygon)?",
-      "options": ["1440°", "1620°", "1800°", "2160°"],
-      "correctAnswerIndex": 2
+      "text": "What is the Roman numeral for the number 50?",
+      "options": ["X", "L", "C", "D"],
+      "correctAnswerIndex": 1
     },
     "Language": {
       "id": "r4_language",
-      "text": "From which language does the English word 'algebra' originate?",
-      "options": ["Latin", "Greek", "Arabic", "Sanskrit"],
-      "correctAnswerIndex": 2
+      "text": "What is the literary term for a figure of speech in which apparently contradictory terms appear in conjunction, such as 'deafening silence' or 'Open secret'?",
+      "options": ["Metaphor", "Oxymoron", "Tautology", "Paradox"],
+      "correctAnswerIndex": 1
     },
     "Politics": {
       "id": "r4_politics",
@@ -354,25 +359,30 @@
     },
     "Science": {
       "id": "r5_science",
-      "text": "What is the approximate age of the universe according to current cosmological models?",
+      "text": "What is the main reason Earth experiences changing seasons throughout the year?",
       "options": [
-        "9.2 billion years",
-        "11.5 billion years",
-        "13.8 billion years",
-        "15.2 billion years"
+        "Earth's distance from the Moon changing over time",
+        "The varying speed of Earth's rotation on its axis",
+        "Changes in the energy output of the Sun",
+        "The tilt of Earth's axis as it orbits the Sun"
       ],
-      "correctAnswerIndex": 2
+      "correctAnswerIndex": 3
     },
     "Maths": {
       "id": "r5_maths",
-      "text": "What is the value of the Riemann zeta function ζ(2), famously solved as the Basel problem?",
-      "options": ["π²/4", "π²/6", "π²/8", "π²/12"],
-      "correctAnswerIndex": 1
+      "text": "How many zeros are in the number one trillion?",
+      "options": ["9", "10", "12", "15"],
+      "correctAnswerIndex": 2
     },
     "Language": {
       "id": "r5_language",
-      "text": "The Rosetta Stone contains text in three scripts. Besides hieroglyphs and Demotic, what is the third?",
-      "options": ["Latin", "Ancient Greek", "Aramaic", "Coptic"],
+      "text": "The 'Thirukkural' consists of 133 Adhikarams (chapters) divided across three Paals (sections). What is the exact distribution of these chapters among Aram (Virtue), Porul (Wealth), and Inbam (Love)?",
+      "options": [
+        "Aram: 40, Porul: 60, Inbam: 33",
+        "Aram: 38, Porul: 70, Inbam: 25",
+        "Aram: 33, Porul: 50, Inbam: 50",
+        "Aram: 30, Porul: 73, Inbam: 30"
+      ],
       "correctAnswerIndex": 1
     },
     "Politics": {
