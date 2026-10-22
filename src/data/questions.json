@@ -48,15 +48,15 @@
     },
     "Sports": {
       "id": "r1_sports",
-      "text": "How many players are on a standard football (soccer) team on the field?",
-      "options": ["9", "10", "11", "12"],
+      "text": "Which chess piece is the only one that can jump over other pieces on the board?",
+      "options": ["Rook", "Bishop", "Knight", "Queen"],
       "correctAnswerIndex": 2
     },
     "Mythology": {
       "id": "r1_mythology",
-      "text": "In Greek mythology, who is the king of the gods?",
-      "options": ["Poseidon", "Hades", "Zeus", "Apollo"],
-      "correctAnswerIndex": 2
+      "text": "According to the Mahabharata, who is the biological father of Karna, having fathered him through Kunti before her marriage to Pandu?",
+      "options": ["Indra", "Surya", "Vayu", "Yama"],
+      "correctAnswerIndex": 1
     },
     "History": {
       "id": "r1_history",
@@ -137,14 +137,14 @@
     },
     "Sports": {
       "id": "r2_sports",
-      "text": "In which year were the first modern Olympic Games held?",
-      "options": ["1888", "1896", "1900", "1904"],
-      "correctAnswerIndex": 1
+      "text": "How many players are on a standard football (soccer) team on the field?",
+      "options": ["9", "10", "11", "12"],
+      "correctAnswerIndex": 2
     },
     "Mythology": {
       "id": "r2_mythology",
-      "text": "In Greek mythology, who is the god of the sea?",
-      "options": ["Ares", "Poseidon", "Hephaestus", "Hermes"],
+      "text": "What was the birth name of Indrajit before he earned the title of Indrajit ('Conqueror of Indra') after defeating Indra in battle?",
+      "options": ["Atikaya", "Meghnada", "Akshakumar", "Trishira"],
       "correctAnswerIndex": 1
     },
     "History": {
@@ -216,15 +216,20 @@
     },
     "Sports": {
       "id": "r3_sports",
-      "text": "In what year did the 'Miracle on Ice' occur, where the US hockey team defeated the Soviet Union at the Winter Olympics?",
-      "options": ["1972", "1976", "1980", "1984"],
+      "text": "Who is the only batsman in cricket history to score three double centuries in One Day International (ODI) matches?",
+      "options": [
+        "Sachin Tendulkar",
+        "Virender Sehwag",
+        "Rohit Sharma",
+        "Chris Gayle"
+      ],
       "correctAnswerIndex": 2
     },
     "Mythology": {
       "id": "r3_mythology",
-      "text": "In Greek mythology, what creature with the body of a lion and head of a human posed a riddle to travellers near Thebes?",
-      "options": ["Griffin", "Sphinx", "Manticore", "Chimera"],
-      "correctAnswerIndex": 1
+      "text": "According to the Mahabharata, who is the last commander-in-chief of the Kaurava army for the final days of the Kurukshetra War?",
+      "options": ["Karna", "Bhishma", "Dronacharya", "Ashwatthama"],
+      "correctAnswerIndex": 0
     },
     "History": {
       "id": "r3_history",
@@ -321,9 +326,14 @@
     },
     "Mythology": {
       "id": "r4_mythology",
-      "text": "In Egyptian mythology, who is the god of the afterlife who serves as judge of the dead?",
-      "options": ["Anubis", "Ra", "Osiris", "Horus"],
-      "correctAnswerIndex": 2
+      "text": "During the construction of the Ram Setu (Adam's Bridge) to Lanka, which two Vanara engineers are credited in the epic with directing and supervising the placement of floating stones and rocks?",
+      "options": [
+        "Nala and Nila",
+        "Angada and Hanuman",
+        "Sugriva and Jambavan",
+        "Dvivida and Mayura"
+      ],
+      "correctAnswerIndex": 0
     },
     "History": {
       "id": "r4_history",
@@ -414,19 +424,24 @@
     },
     "Sports": {
       "id": "r5_sports",
-      "text": "As of 2024, who holds the record for the most Grand Slam singles titles in men's tennis?",
+      "text": "What are the standard dimensions of a badminton court for a doubles match?",
       "options": [
-        "Rafael Nadal",
-        "Roger Federer",
-        "Novak Djokovic",
-        "Pete Sampras"
+        "44 feet long by 17 feet wide",
+        "44 feet long by 20 feet wide",
+        "45 feet long by 25 feet wide",
+        "46 feet long by 22 feet wide"
       ],
-      "correctAnswerIndex": 2
+      "correctAnswerIndex": 1
     },
     "Mythology": {
       "id": "r5_mythology",
-      "text": "In Japanese mythology, what is the name of the sun goddess considered the ancestor of the Imperial family?",
-      "options": ["Tsukuyomi", "Amaterasu", "Izanami", "Susanoo"],
+      "text": "According to Hindu tradition, who are the 'Saptarishi' (Seven Sages) typically recognized as in the current Manvantara (Vaivasvata Manvantara)?",
+      "options": [
+        "Narada, Agastya, Durvasa, Markandeya, Parashurama, Vyasa, and Vasishtha",
+        "Kashyapa, Atri, Vashistha, Vishwamitra, Gautama, Jamadagni, and Bharadwaja",
+        "Bhrigu, Angiras, Marichi, Pulastya, Pulaha, Kratu, and Vasishtha",
+        "Sanaka, Sanandana, Sanatana, Sanatkumara, Ribhu, Datta, and Panchashikha"
+      ],
       "correctAnswerIndex": 1
     },
     "History": {
