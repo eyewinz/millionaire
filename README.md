@@ -15,7 +15,8 @@ Two teams compete head-to-head across **5 rounds of 5 questions each** — **25 
 ### Teams & Turns
 
 - **Two teams**: Team A and Team B.
-- Teams **alternate turns** throughout the game: Team A answers, then Team B answers, and so on.
+- Teams **alternate turns** throughout each round: whoever starts answers, then the other team answers, and so on.
+- **Round 1 always starts with Team A.** From **Round 2 onward, the team with the lower running score goes first**; on a tie, the team that did *not* start the previous round leads (so repeated ties alternate the starter). This gives the trailing team a small catch-up advantage each round, so the starting team isn't always Team A.
 - Each team answers **25 questions** over the course of the game (50 question events total).
 
 ### Rounds & Questions
@@ -35,7 +36,7 @@ Two teams compete head-to-head across **5 rounds of 5 questions each** — **25 
 | R1 Q2 | Team B | 9 remaining | 📜 History |
 | ... | ... | ... | ... |
 | R1 Q5 | Team B | 3 remaining | 🍕 Food |
-| **R2 Q1** | **Team A** | **All 12 (reset)** | ... |
+| **R2 Q1** | **Lower-scoring team** | **All 12 (reset)** | ... |
 
 ### Categories
 

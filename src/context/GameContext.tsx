@@ -131,11 +131,6 @@ export function getRoundPenaltyFraction(
   return 0.4;
 }
 
-/** Determine which team should play next (simple alternation). */
-function nextTeamIndex(overallQuestionNumber: number): 0 | 1 {
-  return ((overallQuestionNumber - 1) % 2) as 0 | 1;
-}
-
 /**
  * Return the questions for a round that were never played (neither answered
  * nor skipped) — i.e. the categories that no team selected that round.
@@ -385,7 +380,9 @@ function gameReducer(state: GameState, action: GameAction): GameState {
 
       const newQuestionInRound = state.currentQuestionInRound + 1;
       const newOverallQuestion = state.overallQuestionNumber + 1;
-      const newTeamIndex = nextTeamIndex(newOverallQuestion);
+      // Teams simply alternate within a round; the round's starting team is
+      // decided in CONTINUE_AFTER_ROUND.
+      const newTeamIndex: 0 | 1 = state.currentTeamIndex === 0 ? 1 : 0;
 
       // Remove the used category from the shared pool
       const newAvailableCategories = state.selectedCategory
@@ -445,7 +442,19 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       // Advance to next round
       const newRound = state.currentRound + 1;
       const newOverall = state.overallQuestionNumber + 1;
-      const newTeam = nextTeamIndex(newOverall);
+      // The team with the lower running score (after penalties) goes first in
+      // the new round. On a tie, the team that did NOT start the previous round
+      // leads (so a run of ties alternates the starter). At the round summary,
+      // `currentTeamIndex` is the team that played the final question, i.e. the
+      // one that did not start that round.
+      let newTeam: 0 | 1;
+      if (updatedTeams[0].score < updatedTeams[1].score) {
+        newTeam = 0;
+      } else if (updatedTeams[1].score < updatedTeams[0].score) {
+        newTeam = 1;
+      } else {
+        newTeam = state.currentTeamIndex;
+      }
 
       updatedTeams[0].roundCorrect = 0;
       updatedTeams[1].roundCorrect = 0;

@@ -64,7 +64,7 @@ All game state lives in a single `GameState` object managed by `useReducer` in `
 **Key state fields:**
 - `phase` — determines which screen to render (`start`, `category-select`, `question`, `result`, `round-summary`, `round-review`, `game-over`)
 - `teams` — tuple of two `Team` objects (scores, lifelines, round stats)
-- `currentTeamIndex` — `0 | 1`, alternates each question
+- `currentTeamIndex` — `0 | 1`, alternates each question within a round. The round's **starting** team is Team A for round 1; for later rounds it's the team with the lower score at the end of the previous round (set in `CONTINUE_AFTER_ROUND`)
 - `currentRound` — 1 through 5
 - `availableCategories` — shared `Category[]` pool, starts with all 12 each round
 - `currentQuestion` — the active `Question` object (or null)
@@ -83,7 +83,7 @@ All game state lives in a single `GameState` object managed by `useReducer` in `
 - `USE_LIFELINE` — activate a lifeline (phone, fifty, mystery, lastChance); blocked if one was already used this question
 - `DISMISS_LIFELINE` — close the lifeline overlay
 - `SHOW_ROUND_REVIEW` — move from `round-summary` to the `round-review` screen
-- `CONTINUE_AFTER_ROUND` — apply graduated penalties, advance to next round or end game
+- `CONTINUE_AFTER_ROUND` — apply graduated penalties, advance to next round or end game; sets the next round's starting team to the lower-scoring team
 - `RESET_GAME` — return to initial state
 
 ### Persistence
@@ -240,4 +240,5 @@ npx tsc --noEmit     # type-check without emitting
 - `questionDeadline` is stored in state (and persisted), so the per-question countdown keeps running correctly across a page refresh.
 - **Only one lifeline may be used per question** — `lifelineUsedThisQuestion` guards the `USE_LIFELINE` reducer case and the UI disables the other lifelines once one is used.
 - Lifelines are per-team and persist across rounds (they don't reset).
+- Within a round, `NEXT_QUESTION` just toggles `currentTeamIndex` (strict alternation). The **starting** team for a round is decided in `CONTINUE_AFTER_ROUND`: Team A for round 1, otherwise the team with the lower post-penalty score. On a tie, the team that did *not* start the previous round leads — at the round summary, `currentTeamIndex` already points at the final-question player (the previous round's non-starter), so it's used directly. Turn order is no longer derived from `overallQuestionNumber` parity.
 - `Last Chance` lifeline has special unlock rules: only available from Round 4+, and only after all other 3 lifelines are used.
