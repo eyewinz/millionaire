@@ -1,0 +1,482 @@
+{
+  "r1": {
+    "Cinema": {
+      "id": "r1_cinema",
+      "text": "Which star is popularly known as \"Thalaivar\" in Tamil cinema?",
+      "options": ["Kamal Haasan", "Rajinikanth", "Vijay", "Ajith Kumar"],
+      "correctAnswerIndex": 1
+    },
+    "Science": {
+      "id": "r1_science",
+      "text": "What planet in our solar system is known as the Red Planet?",
+      "options": ["Venus", "Mars", "Jupiter", "Saturn"],
+      "correctAnswerIndex": 1
+    },
+    "Maths": {
+      "id": "r1_maths",
+      "text": "If a triangle has three equal sides, what is it called?",
+      "options": ["Scalene", "Isosceles", "Equilateral", "Right-angled"],
+      "correctAnswerIndex": 2
+    },
+    "Language": {
+      "id": "r1_language",
+      "text": "Which famous Tamil poet wrote the 'Aathichoodi'?",
+      "options": [
+        "Andal",
+        "Avvaiyar",
+        "Karaikkal Ammaiyar",
+        "Kakkai Padiniyar"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Politics": {
+      "id": "r1_politics",
+      "text": "Which political party was founded by the popular actor-turned-politician M. G. Ramachandran (MGR) in 1972 after his split from the DMK?",
+      "options": [
+        "Desiya Murpokku Dravida Kazhagam (DMDK)",
+        "Pattali Makkal Katchi (PMK)",
+        "Marumalarchi Dravida Munnetra Kazhagam (MDMK)",
+        "All India Anna Dravida Munnetra Kazhagam (AIADMK)"
+      ],
+      "correctAnswerIndex": 3
+    },
+    "Puzzle": {
+      "id": "r1_puzzle",
+      "text": "I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. What am I?",
+      "options": ["A dream", "A map", "A globe", "A painting"],
+      "correctAnswerIndex": 1
+    },
+    "Sports": {
+      "id": "r1_sports",
+      "text": "Which chess piece is the only one that can jump over other pieces on the board?",
+      "options": ["Rook", "Bishop", "Knight", "Queen"],
+      "correctAnswerIndex": 2
+    },
+    "Mythology": {
+      "id": "r1_mythology",
+      "text": "According to the Mahabharata, who is the biological father of Karna, having fathered him through Kunti before her marriage to Pandu?",
+      "options": ["Indra", "Surya", "Vayu", "Yama"],
+      "correctAnswerIndex": 1
+    },
+    "History": {
+      "id": "r1_history",
+      "text": "Who was the first Prime Minister of independent India, taking office in August 1947?",
+      "options": [
+        "Sardar Vallabhbhai Patel",
+        "Dr. B. R. Ambedkar",
+        "Jawaharlal Nehru",
+        "Subhas Chandra Bose"
+      ],
+      "correctAnswerIndex": 2
+    },
+    "Food": {
+      "id": "r1_food",
+      "text": "Which country is sushi originally from?",
+      "options": ["China", "Japan", "Thailand", "South Korea"],
+      "correctAnswerIndex": 1
+    },
+    "Geography": {
+      "id": "r1_geography",
+      "text": "What is the largest continent by area?",
+      "options": ["Africa", "North America", "Europe", "Asia"],
+      "correctAnswerIndex": 3
+    },
+    "Nature": {
+      "id": "r1_nature",
+      "text": "Among the following big cats, which is the largest and heaviest in the world, with adult males of some subspecies capable of weighing over 600 pounds?",
+      "options": ["Lion", "Cheetah", "Tiger", "Panther"],
+      "correctAnswerIndex": 2
+    }
+  },
+  "r2": {
+    "Cinema": {
+      "id": "r2_cinema",
+      "text": "Before becoming a pan-Indian phenomenon and National Award-winning star under the name Dhanush, what was the actor given at birth?",
+      "options": [
+        "Kasthuri Raja",
+        "Prabhu Deva",
+        "Selvaraghavan",
+        "Venkatesh Prabhu"
+      ],
+      "correctAnswerIndex": 3
+    },
+    "Science": {
+      "id": "r2_science",
+      "text": "What is the chemical symbol for gold?",
+      "options": ["Go", "Au", "Ag", "Gd"],
+      "correctAnswerIndex": 1
+    },
+    "Maths": {
+      "id": "r2_maths",
+      "text": "What is the proper geometric name for a polygon with 7 sides?",
+      "options": ["Hexagon", "Heptagon", "Octagon", "Septagon"],
+      "correctAnswerIndex": 1
+    },
+    "Language": {
+      "id": "r2_language",
+      "text": "What is the earliest known and surviving work on Tamil grammar and poetics?",
+      "options": ["Agattiyam", "Nannūl", "Tolkappiyam", "Ettuthokai"],
+      "correctAnswerIndex": 2
+    },
+    "Politics": {
+      "id": "r2_politics",
+      "text": "Who was the first woman to serve as the President of India?",
+      "options": [
+        "Indira Gandhi",
+        "Pratibha Patil",
+        "Sarojini Naidu",
+        "Droupadi Murmu"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Puzzle": {
+      "id": "r2_puzzle",
+      "text": "The person who makes it has no need of it. The person who buys it has no use for it. The person who uses it can neither see nor feel it. What is it?",
+      "options": ["A parachute", "Life insurance", "A coffin", "A lie"],
+      "correctAnswerIndex": 2
+    },
+    "Sports": {
+      "id": "r2_sports",
+      "text": "How many players are on a standard football (soccer) team on the field?",
+      "options": ["9", "10", "11", "12"],
+      "correctAnswerIndex": 2
+    },
+    "Mythology": {
+      "id": "r2_mythology",
+      "text": "What was the birth name of Indrajit before he earned the title of Indrajit ('Conqueror of Indra') after defeating Indra in battle?",
+      "options": ["Atikaya", "Meghnada", "Akshakumar", "Trishira"],
+      "correctAnswerIndex": 1
+    },
+    "History": {
+      "id": "r2_history",
+      "text": "Which ancient civilization built the monumental pyramids of Giza along the Nile River?",
+      "options": [
+        "The Mesopotamians",
+        "The Ancient Greeks",
+        "The Ancient Egyptians",
+        "The Roman Empire"
+      ],
+      "correctAnswerIndex": 2
+    },
+    "Food": {
+      "id": "r2_food",
+      "text": "Which expensive spice, known for its distinct earthy flavor, is derived from the delicate thread-like stigmas of the Crocus sativus flower?",
+      "options": ["Turmeric", "Saffron", "Cardamom", "vanilla"],
+      "correctAnswerIndex": 1
+    },
+    "Geography": {
+      "id": "r2_geography",
+      "text": "What is the longest river in world?",
+      "options": ["Ganga", "Amazon River", "Zambezi", "Nile"],
+      "correctAnswerIndex": 3
+    },
+    "Nature": {
+      "id": "r2_nature",
+      "text": "Which deep-sea cephalopod possesses three hearts, blue blood containing copper-based hemocyanin, and an astonishing capacity for complex problem-solving and camouflage?",
+      "options": [
+        "The Nautilus",
+        "The Cuttlefish",
+        "The Octopus",
+        "The Giant Squid"
+      ],
+      "correctAnswerIndex": 2
+    }
+  },
+  "r3": {
+    "Cinema": {
+      "id": "r3_cinema",
+      "text": "Which Tamil movie won the National Film Award for Best Feature Film in Tamil for the year 1999 and was directed by Bala?",
+      "options": ["Sethu", "Nandha", "Pithamagan", "Kasi"],
+      "correctAnswerIndex": 0
+    },
+    "Science": {
+      "id": "r3_science",
+      "text": "What is the most abundant element in the Earth's crust by mass?",
+      "options": ["Silicon", "Aluminum", "Iron", "Oxygen"],
+      "correctAnswerIndex": 3
+    },
+    "Maths": {
+      "id": "r3_maths",
+      "text": "How many degrees are in a full circle?",
+      "options": ["90°", "180°", "270°", "360°"],
+      "correctAnswerIndex": 3
+    },
+    "Language": {
+      "id": "r3_language",
+      "text": "Which script is primarily used to write the Hindi language?",
+      "options": [
+        "Kharosthi script",
+        "Brahmi script",
+        "Devanagari script",
+        "Dravidian script"
+      ],
+      "correctAnswerIndex": 2
+    },
+    "Politics": {
+      "id": "r3_politics",
+      "text": "In which city is the headquarters of the United Nations located?",
+      "options": ["Geneva", "Washington D.C.", "Brussels", "New York City"],
+      "correctAnswerIndex": 3
+    },
+    "Puzzle": {
+      "id": "r3_puzzle",
+      "text": "You measure my life in hours and I serve you by expiring. I'm quick when I'm thin and slow when I'm fat. The wind is my enemy. What am I?",
+      "options": ["A cigarette", "A candle", "An hourglass", "A campfire"],
+      "correctAnswerIndex": 1
+    },
+    "Sports": {
+      "id": "r3_sports",
+      "text": "Who is the only batsman in cricket history to score three double centuries in One Day International (ODI) matches?",
+      "options": [
+        "Sachin Tendulkar",
+        "Virender Sehwag",
+        "Rohit Sharma",
+        "Chris Gayle"
+      ],
+      "correctAnswerIndex": 2
+    },
+    "Mythology": {
+      "id": "r3_mythology",
+      "text": "According to the Mahabharata, who is the last commander-in-chief of the Kaurava army for the final days of the Kurukshetra War?",
+      "options": ["Karna", "Bhishma", "Dronacharya", "Ashwatthama"],
+      "correctAnswerIndex": 0
+    },
+    "History": {
+      "id": "r3_history",
+      "text": "Which ancient Tamil dynasty, known for its powerful navy and maritime trade, used a tiger as its royal emblem and ruled over regions of southern India and parts of Southeast Asia?",
+      "options": [
+        "The Pandya dynasty",
+        "The Chola dynasty",
+        "The Chera dynasty",
+        "The Pallava dynasty"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Food": {
+      "id": "r3_food",
+      "text": "Botanically speaking, which common culinary 'vegetable' is actually classified as a berry, while strawberries are scientifically considered aggregate fruits?",
+      "options": ["Tomato", "Onion", "Potato", "Carrot"],
+      "correctAnswerIndex": 0
+    },
+    "Geography": {
+      "id": "r3_geography",
+      "text": "What is the deepest known point in the world's oceans?",
+      "options": [
+        "Tonga Trench",
+        "Mariana Trench",
+        "Java Trench",
+        "Challenger Deep"
+      ],
+      "correctAnswerIndex": 3
+    },
+    "Nature": {
+      "id": "r3_nature",
+      "text": "Which is the only known bird capable of sustained backward flight?",
+      "options": ["Sunbird", "Swift", "Hummingbird", "Kingfisher"],
+      "correctAnswerIndex": 2
+    }
+  },
+  "r4": {
+    "Cinema": {
+      "id": "r4_cinema",
+      "text": "In Gautham Vasudev Menon’s classic semi-autobiographical hit Vaaranam Aayiram (2008), Suriya played a dual father-son role. What were the names of those two characters?",
+      "options": [
+        "Kannan and Chandran",
+        "Michael and Rayappan",
+        "Sanjay and Deva",
+        "Krishnan and Surya"
+      ],
+      "correctAnswerIndex": 3
+    },
+    "Science": {
+      "id": "r4_science",
+      "text": "Which large internal organ performs hundreds of vital functions, including detoxifying various metabolites, synthesizing proteins, and producing biochemicals necessary for digestion?",
+      "options": ["Stomach", "Pancreas", "Spleen", "Liver"],
+      "correctAnswerIndex": 3
+    },
+    "Maths": {
+      "id": "r4_maths",
+      "text": "What is the Roman numeral for the number 50?",
+      "options": ["X", "L", "C", "D"],
+      "correctAnswerIndex": 1
+    },
+    "Language": {
+      "id": "r4_language",
+      "text": "What is the literary term for a figure of speech in which apparently contradictory terms appear in conjunction, such as 'deafening silence' or 'Open secret'?",
+      "options": ["Metaphor", "Oxymoron", "Tautology", "Paradox"],
+      "correctAnswerIndex": 1
+    },
+    "Politics": {
+      "id": "r4_politics",
+      "text": "In Indian politics, what is the minimum age required to become the Prime Minister of India (assuming the candidate is a member of the Lok Sabha)?",
+      "options": ["21 years", "25 years", "30 years", "35 years"],
+      "correctAnswerIndex": 1
+    },
+    "Puzzle": {
+      "id": "r4_puzzle",
+      "text": "There are three doors you can choose to escape a trap. Door A leads to a blazing inferno. Door B leads to a trained assassin. Door C leads to a lion that hasn't eaten in three years. Which door is the safest?",
+      "options": [
+        "Door A",
+        "Door B",
+        "Door C",
+        "None, they are all equally fatal"
+      ],
+      "correctAnswerIndex": 2
+    },
+    "Sports": {
+      "id": "r4_sports",
+      "text": "Which athlete has won the most Olympic gold medals of all time?",
+      "options": ["Usain Bolt", "Carl Lewis", "Michael Phelps", "Mark Spitz"],
+      "correctAnswerIndex": 2
+    },
+    "Mythology": {
+      "id": "r4_mythology",
+      "text": "During the construction of the Ram Setu (Adam's Bridge) to Lanka, which two Vanara engineers are credited in the epic with directing and supervising the placement of floating stones and rocks?",
+      "options": [
+        "Nala and Nila",
+        "Angada and Hanuman",
+        "Sugriva and Jambavan",
+        "Dvivida and Mayura"
+      ],
+      "correctAnswerIndex": 0
+    },
+    "History": {
+      "id": "r4_history",
+      "text": "On what date did India officially adopt its Constitution and become a republic, a day celebrated annually as Republic Day?",
+      "options": [
+        "January 26, 1948",
+        "January 26, 1950",
+        "January 26, 1949",
+        "January 26, 1951"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Food": {
+      "id": "r4_food",
+      "text": "Known scientifically as a 'multiple fruit' because it forms from dozens of individual flowers fusing together around a core, which spiky tropical fruit also contains the digestive enzyme bromelain?",
+      "options": ["Rambutan", "Durian", "Pineapple", "Jackfruit"],
+      "correctAnswerIndex": 2
+    },
+    "Geography": {
+      "id": "r4_geography",
+      "text": "Which artificial waterway, opened in 1869, connects the Mediterranean Sea to the Red Sea, drastically shortening maritime travel between Europe and Asia?",
+      "options": [
+        "The Panama Canal",
+        "The Suez Canal",
+        "The Kiel Canal",
+        "The Corinth Canal"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Nature": {
+      "id": "r4_nature",
+      "text": "Which Australian marsupial is famous for producing uniquely cube-shaped (square) feces (poo)?",
+      "options": ["Koala", "Tasmanian Devil", "Wombat", "Kangaroo"],
+      "correctAnswerIndex": 2
+    }
+  },
+  "r5": {
+    "Cinema": {
+      "id": "r5_cinema",
+      "text": "In the 2016 film Theri, what is the police designation / rank of Vijay's character (Joseph Kuruvilla / Vijay Kumar)?",
+      "options": [
+        "ASP (Assistant Superintendent of Police)",
+        "DCP (Deputy Commissioner of Police)",
+        "ACP (Assistant Commissioner of Police)",
+        "DSP (Deputy Superintendent of Police)"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Science": {
+      "id": "r5_science",
+      "text": "What is the main reason Earth experiences changing seasons throughout the year?",
+      "options": [
+        "Earth's distance from the Moon changing over time",
+        "The varying speed of Earth's rotation on its axis",
+        "Changes in the energy output of the Sun",
+        "The tilt of Earth's axis as it orbits the Sun"
+      ],
+      "correctAnswerIndex": 3
+    },
+    "Maths": {
+      "id": "r5_maths",
+      "text": "How many zeros are in the number one trillion?",
+      "options": ["9", "10", "12", "15"],
+      "correctAnswerIndex": 2
+    },
+    "Language": {
+      "id": "r5_language",
+      "text": "The 'Thirukkural' consists of 133 Adhikarams (chapters) divided across three Paals (sections). What is the exact distribution of these chapters among Aram (Virtue), Porul (Wealth), and Inbam (Love)?",
+      "options": [
+        "Aram: 40, Porul: 60, Inbam: 33",
+        "Aram: 38, Porul: 70, Inbam: 25",
+        "Aram: 33, Porul: 50, Inbam: 50",
+        "Aram: 30, Porul: 73, Inbam: 30"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Politics": {
+      "id": "r5_politics",
+      "text": "In which Indian state was Article 356 (President's Rule) imposed for the very first time in 1951?",
+      "options": ["Manipur", "Uttar Pradesh", "Punjab", "Jammu and Kashmir"],
+      "correctAnswerIndex": 2
+    },
+    "Puzzle": {
+      "id": "r5_puzzle",
+      "text": "A man is looking at a photograph. He says, 'Brothers and sisters, I have none. But that man's father is my father's son.' Who is in the photograph?",
+      "options": ["His father", "Himself", "His son", "His grandfather"],
+      "correctAnswerIndex": 2
+    },
+    "Sports": {
+      "id": "r5_sports",
+      "text": "What are the standard dimensions of a badminton court for a doubles match?",
+      "options": [
+        "44 feet long by 17 feet wide",
+        "44 feet long by 20 feet wide",
+        "45 feet long by 25 feet wide",
+        "46 feet long by 22 feet wide"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "Mythology": {
+      "id": "r5_mythology",
+      "text": "According to Hindu tradition, who are the 'Saptarishi' (Seven Sages) typically recognized as in the current Manvantara (Vaivasvata Manvantara)?",
+      "options": [
+        "Narada, Agastya, Durvasa, Markandeya, Parashurama, Vyasa, and Vasishtha",
+        "Kashyapa, Atri, Vashistha, Vishwamitra, Gautama, Jamadagni, and Bharadwaja",
+        "Bhrigu, Angiras, Marichi, Pulastya, Pulaha, Kratu, and Vasishtha",
+        "Sanaka, Sanandana, Sanatana, Sanatkumara, Ribhu, Datta, and Panchashikha"
+      ],
+      "correctAnswerIndex": 1
+    },
+    "History": {
+      "id": "r5_history",
+      "text": "Which sovereign nation's flag is the only national flag in the world that is neither rectangular nor square, instead consisting of two stacked triangular pennants?",
+      "options": ["Bhutan", "Nepal", "Vatican City", "Switzerland"],
+      "correctAnswerIndex": 1
+    },
+    "Food": {
+      "id": "r5_food",
+      "text": "Which country is recognized as the historical birthplace of coffee (Coffea arabica), where its beans were first roasted and brewed in the highlands during the 15th century?",
+      "options": ["Brazil", "Ethiopia", "Yemen", "Colombia"],
+      "correctAnswerIndex": 1
+    },
+    "Geography": {
+      "id": "r5_geography",
+      "text": "Which is the only country in the world that lies entirely above 1,000 metres in elevation?",
+      "options": ["Bhutan", "Nepal", "Lesotho", "Bolivia"],
+      "correctAnswerIndex": 2
+    },
+    "Nature": {
+      "id": "r5_nature",
+      "text": "Which animal has the longest migration route of any mammal, traveling up to 12,000 miles round trip?",
+      "options": [
+        "Humpback Whale",
+        "Great white shark",
+        "Blue Whale",
+        "Gray Whale"
+      ],
+      "correctAnswerIndex": 3
+    }
+  }
+}
