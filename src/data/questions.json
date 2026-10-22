@@ -60,12 +60,12 @@
     },
     "History": {
       "id": "r1_history",
-      "text": "In which century did Christopher Columbus first sail to the Americas?",
+      "text": "Who was the first Prime Minister of independent India, taking office in August 1947?",
       "options": [
-        "13th century",
-        "14th century",
-        "15th century",
-        "16th century"
+        "Sardar Vallabhbhai Patel",
+        "Dr. B. R. Ambedkar",
+        "Jawaharlal Nehru",
+        "Subhas Chandra Bose"
       ],
       "correctAnswerIndex": 2
     },
@@ -83,9 +83,9 @@
     },
     "Nature": {
       "id": "r1_nature",
-      "text": "What is the largest land animal currently living on Earth?",
-      "options": ["Elephant", "Giraffe", "Hippopotamus", "Rhinoceros"],
-      "correctAnswerIndex": 0
+      "text": "Among the following big cats, which is the largest and heaviest in the world, with adult males of some subspecies capable of weighing over 600 pounds?",
+      "options": ["Lion", "Cheetah", "Tiger", "Panther"],
+      "correctAnswerIndex": 2
     }
   },
   "r2": {
@@ -149,27 +149,37 @@
     },
     "History": {
       "id": "r2_history",
-      "text": "In which year did the Berlin Wall fall?",
-      "options": ["1985", "1987", "1989", "1991"],
+      "text": "Which ancient civilization built the monumental pyramids of Giza along the Nile River?",
+      "options": [
+        "The Mesopotamians",
+        "The Ancient Greeks",
+        "The Ancient Egyptians",
+        "The Roman Empire"
+      ],
       "correctAnswerIndex": 2
     },
     "Food": {
       "id": "r2_food",
-      "text": "Which country is the origin of the dish paella?",
-      "options": ["Italy", "Spain", "Mexico", "Portugal"],
+      "text": "Which expensive spice, known for its distinct earthy flavor, is derived from the delicate thread-like stigmas of the Crocus sativus flower?",
+      "options": ["Turmeric", "Saffron", "Cardamom", "vanilla"],
       "correctAnswerIndex": 1
     },
     "Geography": {
       "id": "r2_geography",
-      "text": "What is the longest river in Africa?",
-      "options": ["Congo", "Niger", "Zambezi", "Nile"],
+      "text": "What is the longest river in world?",
+      "options": ["Ganga", "Amazon River", "Zambezi", "Nile"],
       "correctAnswerIndex": 3
     },
     "Nature": {
       "id": "r2_nature",
-      "text": "Which bird is known for its ability to mimic human speech?",
-      "options": ["Eagle", "Parrot", "Sparrow", "Penguin"],
-      "correctAnswerIndex": 1
+      "text": "Which deep-sea cephalopod possesses three hearts, blue blood containing copper-based hemocyanin, and an astonishing capacity for complex problem-solving and camouflage?",
+      "options": [
+        "The Nautilus",
+        "The Cuttlefish",
+        "The Octopus",
+        "The Giant Squid"
+      ],
+      "correctAnswerIndex": 2
     }
   },
   "r3": {
@@ -233,41 +243,36 @@
     },
     "History": {
       "id": "r3_history",
-      "text": "The Treaty of Tordesillas in 1494 divided newly discovered lands between which two countries?",
+      "text": "Which ancient Tamil dynasty, known for its powerful navy and maritime trade, used a tiger as its royal emblem and ruled over regions of southern India and parts of Southeast Asia?",
       "options": [
-        "England and France",
-        "Spain and Portugal",
-        "Spain and England",
-        "Portugal and the Netherlands"
+        "The Pandya dynasty",
+        "The Chola dynasty",
+        "The Chera dynasty",
+        "The Pallava dynasty"
       ],
       "correctAnswerIndex": 1
     },
     "Food": {
       "id": "r3_food",
-      "text": "From which country does the cheese Gruyère originate?",
-      "options": ["France", "Switzerland", "Netherlands", "Italy"],
-      "correctAnswerIndex": 1
+      "text": "Botanically speaking, which common culinary 'vegetable' is actually classified as a berry, while strawberries are scientifically considered aggregate fruits?",
+      "options": ["Tomato", "Onion", "Potato", "Carrot"],
+      "correctAnswerIndex": 0
     },
     "Geography": {
       "id": "r3_geography",
-      "text": "Which strait separates Europe from Asia at Istanbul?",
+      "text": "What is the deepest known point in the world's oceans?",
       "options": [
-        "Strait of Hormuz",
-        "Strait of Gibraltar",
-        "Bosporus",
-        "Dardanelles"
+        "Tonga Trench",
+        "Mariana Trench",
+        "Java Trench",
+        "Challenger Deep"
       ],
-      "correctAnswerIndex": 2
+      "correctAnswerIndex": 3
     },
     "Nature": {
       "id": "r3_nature",
-      "text": "What is the process by which plants convert sunlight into energy called?",
-      "options": [
-        "Respiration",
-        "Fermentation",
-        "Photosynthesis",
-        "Transpiration"
-      ],
+      "text": "Which is the only known bird capable of sustained backward flight?",
+      "options": ["Sunbird", "Swift", "Hummingbird", "Kingfisher"],
       "correctAnswerIndex": 2
     }
   },
@@ -337,37 +342,37 @@
     },
     "History": {
       "id": "r4_history",
-      "text": "The Battle of Cannae in 216 BC is considered one of the greatest tactical victories in military history. Who commanded the victorious army?",
+      "text": "On what date did India officially adopt its Constitution and become a republic, a day celebrated annually as Republic Day?",
       "options": [
-        "Scipio Africanus",
-        "Hannibal",
-        "Julius Caesar",
-        "Alexander the Great"
+        "January 26, 1948",
+        "January 26, 1950",
+        "January 26, 1949",
+        "January 26, 1951"
       ],
       "correctAnswerIndex": 1
     },
     "Food": {
       "id": "r4_food",
-      "text": "Which spice, derived from the Crocus sativus flower, is the most expensive spice in the world by weight?",
-      "options": ["Vanilla", "Saffron", "Cardamom", "Cinnamon"],
-      "correctAnswerIndex": 1
+      "text": "Known scientifically as a 'multiple fruit' because it forms from dozens of individual flowers fusing together around a core, which spiky tropical fruit also contains the digestive enzyme bromelain?",
+      "options": ["Rambutan", "Durian", "Pineapple", "Jackfruit"],
+      "correctAnswerIndex": 2
     },
     "Geography": {
       "id": "r4_geography",
-      "text": "What is the deepest known point in the world's oceans?",
+      "text": "Which artificial waterway, opened in 1869, connects the Mediterranean Sea to the Red Sea, drastically shortening maritime travel between Europe and Asia?",
       "options": [
-        "Tonga Trench",
-        "Puerto Rico Trench",
-        "Java Trench",
-        "Challenger Deep"
+        "The Panama Canal",
+        "The Suez Canal",
+        "The Kiel Canal",
+        "The Corinth Canal"
       ],
-      "correctAnswerIndex": 3
+      "correctAnswerIndex": 1
     },
     "Nature": {
       "id": "r4_nature",
-      "text": "Which animal has the longest migration route of any mammal, traveling up to 12,000 miles round trip?",
-      "options": ["Blue Whale", "Gray Whale", "Caribou", "Wildebeest"],
-      "correctAnswerIndex": 1
+      "text": "Which Australian marsupial is famous for producing uniquely cube-shaped (square) feces (poo)?",
+      "options": ["Koala", "Tasmanian Devil", "Wombat", "Kangaroo"],
+      "correctAnswerIndex": 2
     }
   },
   "r5": {
@@ -446,19 +451,14 @@
     },
     "History": {
       "id": "r5_history",
-      "text": "The Defenestration of Prague in 1618 is considered the triggering event of which major European conflict?",
-      "options": [
-        "Seven Years' War",
-        "War of the Spanish Succession",
-        "Hundred Years' War",
-        "Thirty Years' War"
-      ],
-      "correctAnswerIndex": 3
+      "text": "Which sovereign nation's flag is the only national flag in the world that is neither rectangular nor square, instead consisting of two stacked triangular pennants?",
+      "options": ["Bhutan", "Nepal", "Vatican City", "Switzerland"],
+      "correctAnswerIndex": 1
     },
     "Food": {
       "id": "r5_food",
-      "text": "In classical French cuisine, which of the five 'mother sauces' is made from a light stock thickened with a white roux?",
-      "options": ["Béchamel", "Velouté", "Hollandaise", "Espagnole"],
+      "text": "Which country is recognized as the historical birthplace of coffee (Coffea arabica), where its beans were first roasted and brewed in the highlands during the 15th century?",
+      "options": ["Brazil", "Ethiopia", "Yemen", "Colombia"],
       "correctAnswerIndex": 1
     },
     "Geography": {
@@ -469,9 +469,14 @@
     },
     "Nature": {
       "id": "r5_nature",
-      "text": "What is the only mammal capable of true sustained flight?",
-      "options": ["Flying Squirrel", "Colugo", "Bat", "Sugar Glider"],
-      "correctAnswerIndex": 2
+      "text": "Which animal has the longest migration route of any mammal, traveling up to 12,000 miles round trip?",
+      "options": [
+        "Humpback Whale",
+        "Great white shark",
+        "Blue Whale",
+        "Gray Whale"
+      ],
+      "correctAnswerIndex": 3
     }
   }
 }
